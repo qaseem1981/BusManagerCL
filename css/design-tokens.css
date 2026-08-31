@@ -1,0 +1,157 @@
+/* ============================================================
+   CONNECTLOCAL DESIGN SYSTEM â€” Token Foundation
+   Source: DesignSystem/colors_and_type.css
+   Load this FIRST â€” before tokens.css and all other stylesheets.
+   ============================================================ */
+
+/* â”€â”€â”€ Font â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@font-face {
+  font-display: swap;
+  font-family: Optimistic;
+  font-style: normal;
+  font-weight: 200;
+  src: url(../fonts/optimistic-200.woff2) format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Optimistic;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/optimistic-400.woff2) format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Optimistic;
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/optimistic-700.woff2) format("woff2");
+}
+
+:root {
+  /* â”€â”€â”€ Brand â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-primary:         #222266;
+  --cl-primary-rgb:     34, 34, 102;
+  --cl-accent:          #ff9933;
+  --cl-accent-rgb:      255, 153, 51;
+  --cl-heading:         #111133;
+  --cl-heading-rgb:     17, 17, 51;
+
+  /* â”€â”€â”€ Status â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-success:         #77dd55;
+  --cl-danger:          #ee3344;
+  --cl-warning:         #ff9933;
+  --cl-info:            #0dcaf0;
+  --cl-purple:          #6f42c1;
+
+  /* â”€â”€â”€ Neutrals â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-white:           #ffffff;
+  --cl-black:           #000000;
+  --cl-gray-100:        #f8f9fa;
+  --cl-gray-200:        #eeeeee;
+  --cl-gray-300:        #dddddd;
+  --cl-gray-400:        #bbbbbb;
+  --cl-gray-500:        #999999;
+  --cl-gray:            #777777;
+  --cl-gray-600:        #666666;
+  --cl-gray-700:        #555555;
+  --cl-gray-800:        #333333;
+  --cl-dark:            #222222;
+
+  /* â”€â”€â”€ Links â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-link:            #0000aa;
+  --cl-link-hover:      var(--cl-accent);
+
+  /* â”€â”€â”€ Semantic surfaces â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-bg:              var(--cl-white);
+  --cl-bg-secondary:    var(--cl-gray-100);
+  --cl-bg-tertiary:     var(--cl-gray-200);
+  --cl-surface:         var(--cl-white);
+
+  /* â”€â”€â”€ Semantic text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-fg1:             var(--cl-dark);
+  --cl-fg2:             var(--cl-gray-600);
+  --cl-fg3:             var(--cl-gray-500);
+  --cl-fg-inverse:      var(--cl-white);
+
+  /* â”€â”€â”€ Borders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-border:          var(--cl-gray-300);
+  --cl-border-strong:   var(--cl-gray-400);
+
+  /* â”€â”€â”€ Button semantics â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-btn-primary-bg:  var(--cl-primary);
+  --cl-btn-primary-fg:  var(--cl-white);
+  --cl-btn-hover-bg:    var(--cl-accent);
+  --cl-btn-hover-border:var(--cl-white);
+
+  /* â”€â”€â”€ Interactive states â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-category-bg:     rgba(255, 153, 51, 0.30);
+  --cl-active-bg:       var(--cl-accent);
+  --cl-active-fg:       var(--cl-black);
+
+  /* â”€â”€â”€ Typography â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-font-sans:       'Optimistic', Montserrat, system-ui, -apple-system,
+                        BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+                        Arial, sans-serif;
+  --cl-font-mono:       SFMono-Regular, Menlo, Monaco, Consolas,
+                        "Liberation Mono", "Courier New", monospace;
+  --cl-font-size-base:  1rem;
+  --cl-line-height:     1.5;
+
+  /* Named font scale */
+  --cl-text-9:          0.5625rem;
+  --cl-text-10:         0.625rem;
+  --cl-text-11:         0.6875rem;
+  --cl-text-12:         0.75rem;
+  --cl-text-13:         0.8125rem;
+  --cl-text-14:         0.875rem;
+  --cl-text-15:         0.9375rem;
+  --cl-text-17:         1.0625rem;
+  --cl-text-18:         1.125rem;
+  --cl-text-21:         1.3125rem;
+  --cl-text-24:         1.5rem;
+  --cl-text-28:         1.75rem;
+  --cl-text-36:         2.25rem;
+  --cl-text-40:         2.5rem;
+
+  /* â”€â”€â”€ Radius â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-radius-sm:       0.25rem;
+  --cl-radius:          0.375rem;
+  --cl-radius-md:       0.5rem;
+  --cl-radius-lg:       0.5rem;
+  --cl-radius-xl:       1rem;
+  --cl-radius-xxl:      2rem;
+  --cl-radius-pill:     50rem;
+  --cl-radius-card:     1.25rem;
+
+  /* â”€â”€â”€ Spacing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-space-1:         0.25rem;
+  --cl-space-2:         0.5rem;
+  --cl-space-3:         0.75rem;
+  --cl-space-4:         1rem;
+  --cl-space-5:         1.25rem;
+  --cl-space-6:         1.5rem;
+  --cl-space-8:         2rem;
+  --cl-space-10:        2.5rem;
+  --cl-space-12:        3rem;
+  --cl-mob-top-height:  3.5rem;
+
+  /* â”€â”€â”€ Shadows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --cl-shadow-sm:       0 0.125rem 0.25rem  rgba(0,0,0,0.075);
+  --cl-shadow:          0 0.5rem   1rem     rgba(0,0,0,0.15);
+  --cl-shadow-lg:       0 1rem     3rem     rgba(0,0,0,0.175);
+  --cl-shadow-card:     0 0.0625rem 0.1875rem rgba(0,0,0,0.16);
+  --cl-shadow-member:   -1px 0 21px 0        rgba(0,0,0,0.2);
+}
+
+/* â”€â”€â”€ Dark mode overrides â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-bs-theme="dark"],
+.theme-dark {
+  --cl-bg:       #222222;
+  --cl-bg-secondary: #1a1a2e;
+  --cl-surface:  #2d2d3d;
+  --cl-fg1:      #dee2e6;
+  --cl-fg2:      #adb5bd;
+  --cl-fg3:      #6c757d;
+  --cl-border:   #495057;
+  --cl-shadow-card: 0 0.0625rem 0.1875rem rgba(255,255,255,0.20);
+}

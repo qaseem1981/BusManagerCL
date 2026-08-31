@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Event</title>
+<script>(function(){try{var t=localStorage.getItem('sa-theme')||'light';document.documentElement.setAttribute('data-bs-theme',t);}catch(e){}})();</script>
+<link rel="icon" type="image/png" sizes="32x32" href="http://20.106.237.166:5202/favicon-32x32.png" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="http://20.106.237.166:5202/_content/Cropper.Blazor/cropper.min.css">
+<link rel="stylesheet" href="http://20.106.237.166:5202/css/design-tokens.css" />
+<link rel="stylesheet" href="http://20.106.237.166:5202/css/tokens.css" />
+<link rel="stylesheet" href="http://20.106.237.166:5202/css/app.css" />
+<link rel="stylesheet" href="http://20.106.237.166:5202/AllAboutLocal.Clients.BusinessManagerApp.styles.css" />
+</head>
+<body>
+
+<style>
+:root {--bs-body-font-weight:500;}
+html, body, .form-control, select.form-select, input, input.btn, button, button.btn, .btn-primary, button[type="submit"].btn, button[type="submit"].btn-primary, input[type="submit"].btn-primary, .btn-outline-primary, .btn-outline-secondary, .btn-outline-danger, .btn-outline-success, .btn-ghost {font-family:var(--cl-font-sans)!important;}
+.form-label {font-size:var(--cl-text-13)!important; color:var(--cl-primary)!important;}
+.form-control, select.form-select {font-weight:var(--bs-body-font-weight)!important; cursor:auto;}
+.schedule-day {background:#fbfcfe;}
+.image-preview-box {width:100%; max-width:320px; height:180px; border:1px solid var(--bs-border-color); border-radius:10px; background:#f4f7fe; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+.image-preview-box img {width:100%; height:100%; object-fit:cover; display:block;}
+.crop-viewport {width:100%; height:360px; background:#101114; border-radius:8px; overflow:hidden; position:relative; cursor:grab; touch-action:none;}
+.crop-viewport:active {cursor:grabbing;}
+.crop-viewport img {position:absolute; top:0; left:0; max-width:none; user-select:none; -webkit-user-drag:none; transform-origin:0 0; pointer-events:none;}
+.crop-frame-hint {position:absolute; inset:0; border:2px dashed rgba(255,255,255,.35); pointer-events:none; border-radius:8px;}
+</style>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event_add_edit"> New Event / Edit Event </button>
+
+<!-- Modal -->
+<div class="modal fade" id="event_add_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="event-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header align-items-start pt-2 pb-3">
+                <div class="lh-1">
+                    <h2 id="event-modal-title" class="modal-title fs-5">Add / Edit Event</h2>
+                    <p class="section-sub mb-0">Create and update events using the Event service.</p>
+                </div>
+                <button type="button" class="btn-close mt-0" data-bs-dismiss="modal" aria-label="Close popup" title="Close"></button>
+            </div>
+
+            <form id="eventForm" method="post">
+
+                <div class="modal-body">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                        <label class="form-label">Business</label>
+                        <select class="form-select">
+                            <option value="">Select business</option>
+                            <option value="019f40b6-3fb3-7e2d-a750-28a2f579f7a8">George Test Busines</option>
+                            <option value="019e82eb-6a3f-7fcd-8739-195c1926cf9e">Imtiaz mega Korangi</option>
+                            <option value="019b76dd-0100-7003-806f-010000000003">Mike's Auto Shop</option>
+                            <option value="019f47c3-7f39-73f7-adf5-1f3d933d9427">new Business</option>
+                            <option value="019e82e3-177b-7c3e-83a5-7d2b6c7ede81">Pizza Max</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Title</label>
+                            <input name="_editor.Title" class="form-control">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Description</label>
+                            <textarea name="_editor.Description" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <hr class="mt-2"/>
+                            <h5 class="mb-1 lh-1"><label class="form-label">Event Schedule</label></h5>
+                            <p class="section-sub mb-0 lh-1"><i class="bi bi-calendar-week"></i>&nbsp; Select start / end date below to add times.</p>
+
+                            <div class="row g-3 mt-0">
+                                <div class="col-6">
+                                    <label class="form-label">Start Date</label>
+                                    <input type="date" id="startDate" name="_editor.StartDate" class="form-control">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">End Date</label>
+                                    <input type="date" id="endDate" name="_editor.EndDate" class="form-control">
+                                </div>
+                            </div>
+
+                            <div id="scheduleContainer" class="d-flex flex-column gap-3 mt-3"></div>
+                            <hr class="mt-4 mb-0" />
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Street Address</label>
+                            <input name="_editor.Location" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">City</label>
+                            <input name="_editor.City" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">State</label>
+                            <input name="_editor.State" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">No. of Attendees (Max.)</label>
+                            <input type="number" step="any" name="_editor.MaxAttendees" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Event Phone</label>
+                            <input type="tel" name="_editor.Phone" class="form-control" placeholder="+10001234567">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Event Website</label>
+                            <input type="url" name="_editor.Website" class="form-control" placeholder="www.example.com">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Event Image</label>
+                            <div class="image-input-wrap">
+                                <div class="image-preview-box mb-2">
+                                    <img id="imagePreview" alt="Selected image preview" class="d-none">
+                                    <div id="imagePreviewPlaceholder" class="text-muted small px-2 text-center">No image selected</div>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap align-items-center">
+                                    <input type="file" id="imageFileInput" class="form-control" accept="image/png,image/jpeg,image/webp" style="max-width:260px" />
+                                    <button type="button" id="removeImageBtn" class="btn btn-outline-secondary btn-sm d-none"> Remove image </button>
+                                </div>
+                                <div class="form-text">PNG, JPG, or WEBP. The cropped image is automatically optimized to 1&nbsp;MB or less.</div>
+                                <input type="hidden" name="_editor.ImageDataUrl" id="imageDataUrlField">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                          <hr class="mt-0 mb-3">
+                          <div class="d-flex align-items-center gap-2 mb-2">
+                            <label class="form-label" style="margin-bottom:0!important;">Pricing Option(s)</label>
+                            <button type="button" id="addPriceBtn" class="btn border border-0 p-0 lh-1 fs-4"> <i class="bi bi-plus-circle"></i> </button>
+                          </div>
+                          <div id="pricingContainer" class="d-flex flex-column gap-2 mb-1"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer gap-2">
+                  <div class="form-check form-switch me-auto">
+                    <input class="form-check-input" name="_editor.IsActive" id="_editor.IsActive" type="checkbox" role="switch" value="True" _bl_24a16a9e-b52c-48f1-af8b-109d4fb3e1fe="" checked>
+                    <label class="form-check-label fs-5 lh-sm" for="_editor.IsActive">Active</label>
+                  </div>
+                  <button id="resetBtn" class="btn btn-outline-secondary" type="button">Cancel</button>
+                  <button class="btn btn-primary" type="submit">Save Event</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image Crop Modal -->
+<div class="modal fade" id="cropModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crop image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="cropViewport" class="crop-viewport">
+          <img id="cropImage" alt="">
+          <div class="crop-frame-hint"></div>
+        </div>
+        <div class="mt-3">
+          <label class="form-label small">Zoom</label>
+          <input type="range" class="form-range" id="cropZoom" min="1" max="3" step="0.01" value="1">
+        </div>
+        <div class="form-text">Drag the image to reposition it. Use the slider to zoom in or out.</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="applyCropBtn">Apply crop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="blazor-error-ui" style="display:none; width:calc(100% - var(--sidebar-width)); right:0; left:auto; background:rgba(rgba(255,153,51,0.92)); color:#000; font-weight:bold;">
+An error has occurred.
+<a href="" class="reload">Reload</a>
+<a class="dismiss">🗙</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<script src="http://20.106.237.166:5202/_content/Cropper.Blazor/cropper.min.js"></script>
+<script src="http://20.106.237.166:5202/js/businessLocationMap.js"></script>
+<script src="http://20.106.237.166:5202/js/messaging-scroll.js"></script>
+<script src="http://20.106.237.166:5202/_framework/blazor.server.js"></script>
+
+<script>
+/* =========================================================
+   1) DATE RANGE -> PER-DAY TIME SLOTS
+   ========================================================= */
+
+const startInput = document.getElementById('startDate');
+const endInput = document.getElementById('endDate');
+const scheduleContainer = document.getElementById('scheduleContainer');
+
+let schedule = {}; // { 'YYYY-MM-DD': [{start:'', end:''}, ...] }
+
+function toISODate(d){ return d.toISOString().slice(0,10); }
+
+function dateRange(startStr, endStr){
+  const dates = [];
+  if(!startStr || !endStr) return dates;
+  const start = new Date(startStr + 'T00:00:00');
+  const end = new Date(endStr + 'T00:00:00');
+  if(end < start) return dates;
+
+  const MAX_DAYS = 60; // sanity cap so a huge range can't freeze the page
+  let cur = new Date(start);
+  let count = 0;
+  while(cur <= end && count < MAX_DAYS){
+    dates.push(toISODate(cur));
+    cur.setDate(cur.getDate() + 1);
+    count++;
+  }
+  return dates;
+}
+
+function renderSchedule(){
+  if(endInput.value && startInput.value && endInput.value < startInput.value){
+    endInput.value = startInput.value;
+  }
+  const dates = dateRange(startInput.value, endInput.value);
+
+  // keep existing slot data for dates still in range, seed new ones, drop removed ones
+  const nextSchedule = {};
+  dates.forEach(d => { nextSchedule[d] = schedule[d] || [{ start: '', end: '' }]; });
+  schedule = nextSchedule;
+
+  scheduleContainer.innerHTML = '';
+  if(dates.length === 0){
+    scheduleContainer.innerHTML = '<p class="alert alert-info mb-0 py-0 lh-lg" role="alert" style="color:black!important;"><i class="bi bi-alarm mt-1"></i> Pick a start and end date above, then add one or more time slots for each day.</p>';
+    return;
+  }
+
+  dates.forEach(date => {
+    const dObj = new Date(date + 'T00:00:00');
+    const label = dObj.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+
+    const card = document.createElement('div');
+    card.className = 'border rounded-3 p-3 schedule-day';
+    card.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <strong>${label}</strong>
+        <button type="button" class="btn add-time-btn border border-0 p-0 lh-1 fs-4" data-date="${date}"> <i class="bi bi-plus-circle"></i> </button>
+      </div>
+      <div class="time-rows d-flex flex-column gap-2" data-date="${date}"></div>
+    `;
+    scheduleContainer.appendChild(card);
+    renderTimeRows(date);
+  });
+}
+
+function renderTimeRows(date){
+  const rowsWrap = scheduleContainer.querySelector(`.time-rows[data-date="${date}"]`);
+  rowsWrap.innerHTML = '';
+  schedule[date].forEach((slot, idx) => {
+    const row = document.createElement('div');
+    row.className = 'd-flex gap-2 align-items-center flex-wrap';
+    row.innerHTML = `
+      <input type="time" class="form-control slot-start" style="max-width:130px" value="${slot.start}" name="_editor.Schedule[${date}].Slots[${idx}].Start" data-date="${date}" data-idx="${idx}">
+      <span class="text-muted">to</span>
+      <input type="time" class="form-control slot-end" style="max-width:130px" value="${slot.end}" name="_editor.Schedule[${date}].Slots[${idx}].End" data-date="${date}" data-idx="${idx}">
+      <button type="button" class="btn btn-sm btn-outline-danger remove-time-btn" data-date="${date}" data-idx="${idx}"> <i class="bi bi-trash"></i> </button>
+    `;
+    rowsWrap.appendChild(row);
+  });
+}
+
+scheduleContainer.addEventListener('click', e => {
+  const addBtn = e.target.closest('.add-time-btn');
+  if(addBtn){
+    const date = addBtn.dataset.date;
+    schedule[date].push({ start: '', end: '' });
+    renderTimeRows(date);
+    return;
+  }
+  const delBtn = e.target.closest('.remove-time-btn');
+  if(delBtn){
+    const date = delBtn.dataset.date;
+    const idx = parseInt(delBtn.dataset.idx, 10);
+    schedule[date].splice(idx, 1);
+    if(schedule[date].length === 0) schedule[date].push({ start: '', end: '' });
+    renderTimeRows(date);
+  }
+});
+
+scheduleContainer.addEventListener('input', e => {
+  if(e.target.classList.contains('slot-start') || e.target.classList.contains('slot-end')){
+    const date = e.target.dataset.date;
+    const idx = parseInt(e.target.dataset.idx, 10);
+    const key = e.target.classList.contains('slot-start') ? 'start' : 'end';
+    schedule[date][idx][key] = e.target.value;
+  }
+});
+
+startInput.addEventListener('change', renderSchedule);
+endInput.addEventListener('change', renderSchedule);
+renderSchedule();
+
+/* =========================================================
+   2) IMAGE CROPPER (drag to pan, slider to zoom, 1MB cap)
+   ========================================================= */
+const OUTPUT_W = 800, OUTPUT_H = 450; // 16:9, matches the 320x180 preview box
+const MAX_BYTES = 1024 * 1024; // 1MB
+const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/webp'];
+
+const fileInput = document.getElementById('imageFileInput');
+const cropModalEl = document.getElementById('cropModal');
+const cropModal = new bootstrap.Modal(cropModalEl);
+const cropImage = document.getElementById('cropImage');
+const cropViewport = document.getElementById('cropViewport');
+const cropZoom = document.getElementById('cropZoom');
+const applyCropBtn = document.getElementById('applyCropBtn');
+const imagePreview = document.getElementById('imagePreview');
+const imagePreviewPlaceholder = document.getElementById('imagePreviewPlaceholder');
+const removeImageBtn = document.getElementById('removeImageBtn');
+const imageDataUrlField = document.getElementById('imageDataUrlField');
+
+let naturalW = 0, naturalH = 0, baseScale = 1, scale = 1, posX = 0, posY = 0;
+let dragging = false, dragStartX = 0, dragStartY = 0, startPosX = 0, startPosY = 0;
+let croppedBlob = null;
+
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  if(!file) return;
+
+  if(!ALLOWED_TYPES.includes(file.type)){
+    alert('Please choose a PNG, JPG, or WEBP image.');
+    fileInput.value = '';
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    cropImage.onload = () => {
+      naturalW = cropImage.naturalWidth;
+      naturalH = cropImage.naturalHeight;
+      const vw = cropViewport.clientWidth;
+      const vh = cropViewport.clientHeight;
+      baseScale = Math.max(vw / naturalW, vh / naturalH);
+      scale = 1;
+      cropZoom.value = 1;
+      posX = (vw - naturalW * baseScale) / 2;
+      posY = (vh - naturalH * baseScale) / 2;
+      applyTransform();
+      cropModal.show();
+    };
+    cropImage.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+function applyTransform(){
+  const s = baseScale * scale;
+  cropImage.style.width = naturalW + 'px';
+  cropImage.style.height = naturalH + 'px';
+  cropImage.style.transform = `translate(${posX}px, ${posY}px) scale(${s})`;
+}
+
+function clampPosition(){
+  const s = baseScale * scale;
+  const vw = cropViewport.clientWidth;
+  const vh = cropViewport.clientHeight;
+  const imgW = naturalW * s, imgH = naturalH * s;
+  const minX = Math.min(0, vw - imgW);
+  const minY = Math.min(0, vh - imgH);
+  posX = Math.max(minX, Math.min(0, posX));
+  posY = Math.max(minY, Math.min(0, posY));
+}
+
+cropZoom.addEventListener('input', () => {
+  scale = parseFloat(cropZoom.value);
+  clampPosition();
+  applyTransform();
+});
+
+function startDrag(x, y){ dragging = true; dragStartX = x; dragStartY = y; startPosX = posX; startPosY = posY; }
+function moveDrag(x, y){
+  if(!dragging) return;
+  posX = startPosX + (x - dragStartX);
+  posY = startPosY + (y - dragStartY);
+  clampPosition();
+  applyTransform();
+}
+function endDrag(){ dragging = false; }
+
+cropViewport.addEventListener('mousedown', e => startDrag(e.clientX, e.clientY));
+window.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
+window.addEventListener('mouseup', endDrag);
+
+cropViewport.addEventListener('touchstart', e => { const t = e.touches[0]; startDrag(t.clientX, t.clientY); }, { passive: true });
+cropViewport.addEventListener('touchmove', e => { const t = e.touches[0]; moveDrag(t.clientX, t.clientY); }, { passive: true });
+cropViewport.addEventListener('touchend', endDrag);
+
+applyCropBtn.addEventListener('click', () => {
+  const s = baseScale * scale;
+  const vw = cropViewport.clientWidth;
+  const vh = cropViewport.clientHeight;
+
+  const sx = (0 - posX) / s;
+  const sy = (0 - posY) / s;
+  const sw = vw / s;
+  const sh = vh / s;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = OUTPUT_W;
+  canvas.height = OUTPUT_H;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, OUTPUT_W, OUTPUT_H);
+  ctx.drawImage(cropImage, sx, sy, sw, sh, 0, 0, OUTPUT_W, OUTPUT_H);
+
+  exportUnderLimit(canvas, 0.92, OUTPUT_W, OUTPUT_H);
+});
+
+// Exported as JPEG regardless of source format so the 1MB cap can always be hit reliably.
+function exportUnderLimit(canvas, quality, w, h){
+  canvas.toBlob(blob => {
+    if(!blob) return;
+    if(blob.size <= MAX_BYTES || (quality <= 0.4 && w <= 400)){
+      finalizeCrop(blob);
+      return;
+    }
+    if(quality > 0.4){
+      exportUnderLimit(canvas, quality - 0.1, w, h);
+    } else {
+      const newW = Math.round(w * 0.8), newH = Math.round(h * 0.8);
+      const smaller = document.createElement('canvas');
+      smaller.width = newW; smaller.height = newH;
+      smaller.getContext('2d').drawImage(canvas, 0, 0, newW, newH);
+      exportUnderLimit(smaller, 0.7, newW, newH);
+    }
+  }, 'image/jpeg', quality);
+}
+
+function finalizeCrop(blob){
+  croppedBlob = blob;
+  const url = URL.createObjectURL(blob);
+  imagePreview.src = url;
+  imagePreview.classList.remove('d-none');
+  imagePreviewPlaceholder.classList.add('d-none');
+  removeImageBtn.classList.remove('d-none');
+
+  const r = new FileReader();
+  r.onload = () => { imageDataUrlField.value = r.result; };
+  r.readAsDataURL(blob);
+
+  cropModal.hide();
+}
+
+removeImageBtn.addEventListener('click', () => {
+  croppedBlob = null;
+  fileInput.value = '';
+  imageDataUrlField.value = '';
+  imagePreview.src = '';
+  imagePreview.classList.add('d-none');
+  imagePreviewPlaceholder.classList.remove('d-none');
+  removeImageBtn.classList.add('d-none');
+});
+
+/* =========================================================
+   3) PRICING (multiple packages)
+   ========================================================= */
+const pricingContainer = document.getElementById('pricingContainer');
+const addPriceBtn = document.getElementById('addPriceBtn');
+let priceCount = 0;
+
+function addPriceRow(label = '', amount = ''){
+  const idx = priceCount++;
+  const row = document.createElement('div');
+  row.className = 'd-flex gap-2 flex-wrap align-items-center price-row';
+  row.innerHTML = `
+    <input type="text" class="form-control" placeholder="e.g. Package 1" name="_editor.Pricing[${idx}].Label" value="${label || ('Package ' + (idx + 1))}" style="max-width:180px">
+    <div class="input-group" style="max-width:120px">
+      <span class="input-group-text">$</span>
+      <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="_editor.Pricing[${idx}].Amount" value="${amount}">
+    </div>
+    <button type="button" class="btn btn-outline-danger btn-sm remove-price-btn"> <i class="bi bi-trash"></i> </button>
+  `;
+  pricingContainer.appendChild(row);
+}
+
+pricingContainer.addEventListener('click', e => {
+  const btn = e.target.closest('.remove-price-btn');
+  if(btn) btn.closest('.price-row').remove();
+});
+
+addPriceBtn.addEventListener('click', () => addPriceRow());
+addPriceRow(); // start with one price row
+
+/* =========================================================
+   4) FORM SUBMIT (demo payload preview — wire to your API here)
+   ========================================================= */
+const eventForm = document.getElementById('eventForm');
+
+eventForm.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const prices = Array.from(pricingContainer.querySelectorAll('.price-row')).map(row => ({
+    label: row.querySelector('input[type="text"]').value,
+    amount: row.querySelector('input[type="number"]').value
+  }));
+
+  const payload = {
+    title: eventForm.querySelector('[name="_editor.Title"]').value,
+    description: eventForm.querySelector('[name="_editor.Description"]').value,
+    startDate: startInput.value,
+    endDate: endInput.value,
+    schedule,
+    location: eventForm.querySelector('[name="_editor.Location"]').value,
+    city: eventForm.querySelector('[name="_editor.City"]').value,
+    state: eventForm.querySelector('[name="_editor.State"]').value,
+    maxAttendees: eventForm.querySelector('[name="_editor.MaxAttendees"]').value,
+    phone: eventForm.querySelector('[name="_editor.Phone"]').value,
+    website: eventForm.querySelector('[name="_editor.Website"]').value,
+    imageSizeKB: croppedBlob ? Math.round(croppedBlob.size / 1024) : null,
+    pricing: prices
+  };
+
+  const formData = new FormData();
+  formData.append('title', payload.title);
+  formData.append('schedule', JSON.stringify(payload.schedule));
+  formData.append('pricing', JSON.stringify(payload.pricing));
+  if (croppedBlob) formData.append('image', croppedBlob, 'event.jpg');
+  // ...append the rest of the fields
+
+  fetch('/api/events', { method: 'POST', body: formData })
+    .then(res => res.json())
+    .then(data => { /* handle success */ })
+    .catch(err => { /* handle error */ });
+
+  // In production: build a FormData, append croppedBlob (e.g. formData.append('image', croppedBlob, 'event.jpg')),
+  // append the other fields, then fetch(...) it to your endpoint.
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  eventForm.reset();
+  schedule = {};
+  renderSchedule();
+  pricingContainer.innerHTML = '';
+  priceCount = 0;
+  addPriceRow();
+  removeImageBtn.click();
+});
+
+</script>
+
+</body>
+</html>

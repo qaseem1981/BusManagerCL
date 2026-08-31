@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Login - Business Viewer</title>
+    <!-- <base href="/" /> -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/design-system.css" />
+    <link rel="preload" href="fonts/optimistic-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="css/design-tokens.css" />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="AllAboutLocal.Clients.BusinessViewerApp.styles.css" />
+    <script>
+        (function () {
+            try {
+                var savedTheme = localStorage.getItem('cl-theme');
+                if (savedTheme === 'dark' || savedTheme === 'light') {
+                    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+                }
+            } catch (_) {
+            }
+        })();
+    </script>
+    <!--Blazor:{"type":"server","prerenderId":"a8bb869743e54f83aa5d43bc5738545d","key":{"locationHash":"77D12F14A8105320B1AAED6AE7E689DA0EC4483270A645E84079EAA0FFDF550D:0","formattedComponentKey":""},"sequence":0,"descriptor":"CfDJ8PreUMmmPctHvVxuRXpzRXnyVnP68txhw0hR1nb3le2quOWQRwv43vejEkISyldKpL\u002B8W96CzXQsJkvFdLJ7S/iuDBgt8KINqjxjEKE1Rcgy0VoG4Oy4fGtVlKRqRPQCeSksYVhIdNOtxOgVbE88P3cYH8cLHNVksPdy1o0K6o/TKKgMcSBzhBEynC36PyePX6mPcRHFmFeyosUop0x4tTWYkVtFsp3DBKrPbhauUSPB\u002BHA4k02K2OpUdgkAGPjclIMsD4Ibt5TjqVvyHWN3gBdlVvO1xL5F\u002BNETHt6qg\u002BFRmGCNsD20NjdOgF2JBSZlMiAW22zyciFAa6FB5Hhv3UZC8kmupznEBeZQ2\u002BLwkv8WRZGcjMMo2ROOzEjxLmnbHur9Aqcao\u002BAkuh1WFWak3kvdfuM9RRgxxEy/y0t9z7xwUI1TWBjbMpKyXhcHNnJBN85IJLrSAKGrYXTZzWH4NCGZHJ323IidLtsxZoE70FtTk7iaG4isLPw2fwk/nM04Di70oq0Ug4WBODrDNMn8bAcW1K0RSApXm7KRttDJqNKNqvSvJIND\u002Byuti2HMCFVzUALRnoFD0FjTdcX2rf1zqwE="}--><!--Blazor:{"prerenderId":"a8bb869743e54f83aa5d43bc5738545d"}-->
+</head>
+<body>
+    <!--Blazor:{"type":"server","prerenderId":"926e86e1efd0429cbe7cc1ab76288fb6","key":{"locationHash":"B768F7A8A5F0B39BDC64B71D4544B3F47E7562416F684EB9C67342B28BA3F304:0","formattedComponentKey":""},"sequence":1,"descriptor":"CfDJ8PreUMmmPctHvVxuRXpzRXmpjM\u002BxrVm8L/GxT8T9fBJOYSKULK9AbsnPeOTJG1RuiQriSuX5wSZ2mPpefNSmzDLGSVIa2hQ3hmWwTbuU06dST\u002B\u002B89ux5B/Qdfh0QPclOOEeNR1I9X03y6XYlT5ADo3hRfothOEuFBZeLlB0yipS5FuYwk\u002Bit1\u002BIES8fq8mCb2XgBceuuiuBmjSPn/pBT3J1QXdk6EgvK2F1vu/VTJ5Pbn/yyJ\u002BgQ2INkoq\u002BegOvHBw8RFS4ZQk0JXCl/OW391boc2gWEpWWotiel0D6khNzbuTB5EAaggOX41uk7vKH3nbgKzNa264wFjlogYYuUV9RsaT9GIx7g1LhF9zmBLd35d1rLy3GU8\u002B7dq35Fy/R\u002BmJtnlOvIrqbTGsj\u002BD\u002BrM5QZ1\u002BLFS/RAtsoToAG7BiZWQOXyro/QYJTyB55WaftrIKPEDlatGXFQ/V945dGqEDKiLIIkBzBQcMXl3GVChRRugLMYGgiq6ho9SUQwOParFoGNlwGeSJP6htk84VptbLics6yzfomTCyz8vpRvmr2EMjQVWGlFrfXSZD/sAhf5ihWcY3OnqqUC5QO38vrBSz2Y="}-->
+    
+    <main class="auth-screen">
+        <div class="login-container">
+            <div class="login-signup-card w-100">
+                <div class="login-card card mx-auto">
+                    <div class="card-body">
+                        <div class="auth-brand-block">
+                            <div class="auth-brand-mark" style="background:none;"><img src="images/CL.png" alt="" /></div>
+                            <div class="auth-brand-copy">
+                                <div class="auth-brand-name">ConnectLocal</div>
+                                <div class="auth-brand-sub">Business Viewer</div>
+                            </div>
+                        </div>
+                        <h3 class="login">Welcome back</h3>
+                        <p class="auth-intro">Sign in to continue exploring local businesses, offers, and events.</p>
+                        <form method="post" action="/login">
+                            <input type="hidden" name="__RequestVerificationToken" value="CfDJ8PreUMmmPctHvVxuRXpzRXnqOHibYU6mTl_WsZF5U6vg2EcrPo5s1GqVtW-89mwTSw8LPhCm-un0ilr9KildOBkDSq7eaHa82RNDGJtdaXibHkDBurx1UyPrANJVrrpEIJ4TJbWqcbv0euLfEdT3CYQ" />
+                            <div class="form-floating mb-2">
+                                <select id="login-tenant" name="_model.TenantId" class="form-select valid">
+                                    <option value>Select a tenant first</option>
+                                    <option value="019b76da-a800-7001-8025-100000012345">All About Local (all-about-local)</option>
+                                    <option value="019e8e8b-0193-7972-b44e-841c444d0207">FractalSurf (fractalsurf)</option>
+                                </select>
+                                <label for="login-tenant">Tenant</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input id="login-username" placeholder="Phone number" name="_model.UsernameOrEmail" class="form-control valid" value="jane@example.com" />
+                                <label for="login-username">Phone number</label>
+                            </div>
+                            <div class="form-floating mb-2 position-relative">
+                                <input id="login-password" type="password" placeholder="Password" name="_model.Password" class="form-control valid" value="Password123!" />
+                                <label for="login-password">Password</label>
+                                <button type="button" class="auth-password-toggle" aria-label="Show password"><i class="bi bi-eye"></i></button>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="form-check small">
+                                    <input id="remember-login" type="checkbox" name="_model.RememberMe" class="form-check-input valid" checked value="True" />
+                                    <label class="form-check-label" for="remember-login">Remember me</label>
+                                </div>
+                                <a href="" class="small hover-underline-animation" __internal_preventDefault_onclick>Forgot password?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Log in</button>
+                        </form>
+                        <div class="text-center mt-3 small">
+                            No account? <a href="" class="hover-underline-animation" __internal_preventDefault_onclick>Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--Blazor:{"prerenderId":"926e86e1efd0429cbe7cc1ab76288fb6"}-->
+    <div id="blazor-error-ui"> An error has occurred. <a href="" class="reload">Reload</a> <a class="dismiss">&#128473;</a> </div>
+    <script src="js/app.js"></script>
+    <script src="js/share.js"></script>
+    <script src="js/businessViewerLocation.js"></script>
+    <script src="js/businessViewerMap.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard</title>
+<link rel="icon" type="image/png" sizes="32x32" href="http://20.106.237.166:5202/favicon-32x32.png" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="http://20.106.237.166:5202/_content/Cropper.Blazor/cropper.min.css">
+<link rel="stylesheet" href="http://20.106.237.166:5202/css/design-tokens.css" />
+<link rel="stylesheet" href="http://20.106.237.166:5202/css/tokens.css" />
+<link rel="stylesheet" href="http://20.106.237.166:5202/css/app.css" />
+<!-- DASHBOARD ONLY STYLE -->
+<link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<div class="app-layout">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-brand">
+      <span class="brand-mark">CL</span>
+      <span>
+        <span class="brand-name">ConnectLocal</span>
+        <span class="brand-scope">Business Manager</span>
+      </span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-user-summary">
+        <span class="nav-user-label">Signed in as</span>
+        <span class="nav-user-email" title="mike@mikesauto.com">mike@mikesauto.com</span>
+      </div>
+      <div class="nav-section-label">Overview</div>
+      <a href="" class="nav-item active" aria-current="page">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect> <rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Dashboard
+      </a>
+      <div class="nav-section-label">Business</div>
+      <a href="businesses" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path> <polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Businesses
+      </a>
+      <a href="business-connections" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path> <circle cx="9" cy="7" r="4"></circle> <path d="M19 8v6"></path> <path d="M22 11h-6"></path></svg>
+        Connect Requests
+      </a>
+      <div class="nav-section-label">Commerce</div>
+      <span class="nav-item nav-item-disabled" title="Tenant feature settings could not be loaded (401 Unauthorized).">Offers - Disabled</span>
+      <div class="nav-section-label">Messaging</div>
+      <span class="nav-item nav-item-disabled" title="Tenant feature settings could not be loaded (401 Unauthorized).">Messaging - Disabled</span>
+      <span class="nav-item nav-item-disabled" title="Tenant feature settings could not be loaded (401 Unauthorized).">VIP Lists - Upgrade</span>
+      <div class="nav-section-label">Calendar</div>
+      <span class="nav-item nav-item-disabled" title="Tenant feature settings could not be loaded (401 Unauthorized).">Events - Disabled</span>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">M</div>
+        <div class="user-info">
+          <span class="user-name">Mike Johnson</span>
+          <span class="user-role">BusinessManager</span>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="topbar-title" tabindex="-1">Business Dashboard</h1>
+        <span class="topbar-breadcrumb">Business workspace / Business Dashboard</span>
+      </div>
+      <div class="topbar-right">
+        <button id="toggleAllWidgets" class="btn btn-primary btn-sm rounded-pill">
+          <i class="bi bi-fullscreen-exit me-1"></i> Collapse / Expand All
+        </button>
+        <label class="topbar-search" aria-label="Search business workspace">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle> <path d="M21 21l-4.35-4.35"></path></svg> <input type="search" placeholder="Search..." />
+        </label>
+        <button class="icon-button" type="button" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path> <path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg> <span class="notification-dot"></span>
+        </button>
+        <span class="topbar-avatar" aria-hidden="true">M</span>
+        <button class="btn btn-sm btn-outline-danger btn-with-icon" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path> <path d="M16 17l5-5-5-5"></path> <path d="M21 12H9"></path></svg>
+          Sign Out
+        </button>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <div class="alert alert-danger d-flex justify-content-between mb-4" role="alert">
+        <span><i class="bi bi-exclamation-triangle-fill me-2"></i> Authentication is required for this GraphQL operation.</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <!-- TOP PERFORMANCE CARDS -->
+      <div class="row g-4 mb-4">
+
+        <!-- Total VIP Members -->
+        <div class="col-xl-3 col-md-6">
+          <div class="metric-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="metric-title">Total VIP Members</div>
+                <div class="metric-value">1,482</div>
+                <div class="mt-2">
+                  <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> +18%</span>
+                  <span class="text-muted small ms-1">vs last month</span>
+                </div>
+              </div>
+              <div class="sparkline-container">
+                <canvas id="sparkline1"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New VIP Members -->
+        <div class="col-xl-3 col-md-6">
+          <div class="metric-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-primary text-white rounded-3 p-2 d-flex align-items-center justify-content-center" style="width:36px; height:36px;">
+                  <i class="bi bi-person-plus-fill"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0 fw-bold text-dark lh-1">VIP Growth</h6>
+                  <span class="text-muted small">New This Month</span>
+                </div>
+              </div>
+              <span class="badge bg-light text-dark fs-6 border rounded-pill px-2 py-1"><i class="bi bi-arrow-clockwise spin-icon text-primary me-1"></i> 142</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-end mt-2">
+              <div class="metric-value">142</div>
+              <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> +12%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Offers -->
+        <div class="col-xl-3 col-md-6">
+          <div class="metric-card">
+            <div class="metric-title">Active Offers</div>
+            <div class="metric-value">08</div>
+            <div class="mt-2">
+              <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> +20%</span>
+              <span class="text-muted small ms-1">4 active campaigns</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offers Redeemed -->
+        <div class="col-xl-3 col-md-6">
+          <div class="metric-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="metric-title">Offers Redeemed</div>
+                <div class="metric-value">324</div>
+                <div class="mt-2">
+                  <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> +25%</span>
+                  <span class="text-muted small ms-1">this month</span>
+                </div>
+              </div>
+              <div class="sparkline-container">
+                <canvas id="sparkline2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Performance Cards -->
+        <div class="col-xl-4 col-md-4">
+          <div class="metric-card py-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="metric-title mb-1">Upcoming Events</div>
+                <div class="fs-4 fw-bold">04 Events</div>
+              </div>
+              <span class="badge-trend-up">+2 new</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-4">
+          <div class="metric-card py-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="metric-title mb-1">Messages Sent</div>
+                <div class="fs-4 fw-bold">2,850</div>
+              </div>
+              <span class="badge-trend-up">+14% last week</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-4">
+          <div class="metric-card py-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="metric-title mb-1">Messages Received</div>
+                <div class="fs-4 fw-bold">194</div>
+              </div>
+              <span class="badge-trend-down"><i class="bi bi-caret-down-fill"></i> -3%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLLAPSIBLE GRID -->
+      <div class="row">
+
+        <!-- LEFT COLUMN -->
+        <div class="col-lg-8">
+
+          <!-- 2. QUICK ACTIONS -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-lightning-charge-fill text-warning"></i> Quick Actions</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="row g-3">
+                <div class="col-md-4 col-6">
+                  <a href="#" class="quick-action-btn">
+                    <div class="action-icon bg-primary-subtle text-primary"><i class="bi bi-tag-fill"></i></div>
+                    <span>Create an Offer</span>
+                  </a>
+                </div>
+                <div class="col-md-4 col-6">
+                  <a href="#" class="quick-action-btn">
+                    <div class="action-icon bg-info-subtle text-info"><i class="bi bi-bell-fill"></i></div>
+                    <span>Send a Notification</span>
+                  </a>
+                </div>
+                <div class="col-md-4 col-6">
+                  <a href="#" class="quick-action-btn">
+                    <div class="action-icon bg-success-subtle text-success"><i class="bi bi-chat-left-text-fill"></i></div>
+                    <span>Send an SMS</span>
+                  </a>
+                </div>
+                <div class="col-md-4 col-6">
+                  <a href="#" class="quick-action-btn">
+                    <div class="action-icon bg-warning-subtle text-warning"><i class="bi bi-calendar2-week-fill"></i></div>
+                    <span>Create an Event</span>
+                  </a>
+                </div>
+                <div class="col-md-4 col-6">
+                  <a href="#" class="quick-action-btn">
+                    <div class="action-icon bg-purple-subtle text-purple" style="background:#f3e8ff; color:#9333ea;"><i class="bi bi-people-fill"></i></div>
+                    <span>View VIP Members</span>
+                  </a>
+                </div>
+                <div class="col-md-4 col-6">
+                  <a href="#" class="quick-action-btn">
+                    <div class="action-icon bg-danger-subtle text-danger"><i class="bi bi-shop-window"></i></div>
+                    <span>Add / Edit Business Info</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. VIP AUDIENCE GROWTH Chart -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-bar-chart-line-fill text-primary"></i> VIP Audience Growth</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="row align-items-center mb-3">
+                <div class="col-md-8">
+                  <canvas id="growthChart" height="220"></canvas>
+                </div>
+                <div class="col-md-4 border-start">
+                  <div class="mb-3">
+                    <span class="text-muted small">Total Connected Users</span>
+                    <h3 class="fw-bold mb-0">1,482</h3>
+                  </div>
+                  <div class="mb-3">
+                    <span class="text-muted small">Disconnected Users</span>
+                    <h5 class="fw-semibold text-danger mb-0">24 (1.6%)</h5>
+                  </div>
+                  <div class="mb-3">
+                    <span class="text-muted small">Push-enabled Users</span>
+                    <div class="progress mt-1" style="height:8px;">
+                      <div class="progress-bar bg-primary" style="width:82%;"></div>
+                    </div>
+                    <small class="fw-bold text-dark">82% (1,215)</small>
+                  </div>
+                  <div>
+                    <span class="text-muted small">SMS-enabled Users</span>
+                    <div class="progress mt-1" style="height:8px;">
+                      <div class="progress-bar bg-success" style="width:68%;"></div>
+                    </div>
+                    <small class="fw-bold text-dark">68% (1,007)</small>
+                  </div>
+                </div>
+              </div>
+              <hr class="text-muted my-3">
+              <div>
+                <span class="fw-bold small text-muted d-block mb-2">CONNECTION SOURCES</span>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge d-flex align-items-center gap-1 bg-light text-dark border px-2 py-1" style="font-size:12.5px;">
+                    <i class="bi bi-check2-circle text-primary fs-6 me-1"></i> Directory Listing: <strong>54%</strong>
+                  </span>
+                  <span class="badge d-flex align-items-center gap-1 bg-light text-dark border px-2 py-1" style="font-size:12.5px;">
+                    <i class="bi bi-tag text-success fs-6 me-1"></i> Direct Offer: <strong>28%</strong>
+                  </span>
+                  <span class="badge d-flex align-items-center gap-1 bg-light text-dark border px-2 py-1" style="font-size:12.5px;">
+                    <i class="bi bi-calendar-check text-info fs-6 me-1"></i> Event Signup: <strong>18%</strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. OFFER PERFORMANCE -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-tags-fill text-success"></i> Offer Performance</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <!-- Best performing highlight summary -->
+              <div class="alert alert-success border-0 bg-success-subtle d-flex align-items-center justify-content-between p-3 rounded-3 mb-4">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="fs-2 text-success"><i class="bi bi-trophy-fill"></i></div>
+                  <div>
+                    <h6 class="fw-bold text-success-emphasis mb-1">Best-Performing Offer Summary</h6>
+                    <p class="mb-0 small text-dark">Your <strong>"Free Appetizer"</strong> offer has been redeemed <strong>43 times</strong> and is your best-performing offer this month.</p>
+                  </div>
+                </div>
+                <span class="badge bg-success text-white px-3 py-2 rounded-pill">Top Performer</span>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="p-3 border rounded-3 text-center">
+                    <div class="text-muted small">Active Offers</div>
+                    <div class="fs-4 fw-bold text-info">08</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="p-3 border rounded-3 text-center">
+                    <div class="text-muted small">Total Views</div>
+                    <div class="fs-4 fw-bold text-body-secondary">1,240</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="p-3 border rounded-3 text-center">
+                    <div class="text-muted small">Saved / Claimed</div>
+                    <div class="fs-4 fw-bold text-primary">512</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="p-3 border rounded-3 text-center">
+                    <div class="text-muted small">Redemptions</div>
+                    <div class="fs-4 fw-bold text-success">324</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="p-3 border rounded-3 text-center">
+                    <div class="text-muted small">Redemption Rate</div>
+                    <div class="fs-4 fw-bold text-warning">26.1%</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="p-3 border rounded-3 text-center">
+                    <div class="text-muted small">Offers Expiring</div>
+                    <div class="fs-4 fw-bold text-danger">02</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. MESSAGING PERFORMANCE -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-chat-left-text-fill text-info"></i> Messaging Performance</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="table-responsive">
+                <table class="table align-middle table-borderless">
+                  <thead class="table-light">
+                    <tr class="small text-muted">
+                      <th>CAMPAIGNS</th>
+                      <th>RECIPIENTS</th>
+                      <th>OPENS</th>
+                      <th>CLICKS</th>
+                      <th>FAILED</th>
+                      <th>UNSUBSCRIBES</th>
+                      <th>REDEMPTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span class="badge bg-info-subtle text-primary float-start me-1"><i class="bi bi-bell-fill"></i></span>
+                        <div class="fw-bold">Weekend Special VIP Blast</div>
+                      </td>
+                      <td>1,200</td>
+                      <td>768 <span class="badge-trend-down"><i class="bi bi-caret-down-fill"></i> 64%</span></td>
+                      <td>357 <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> 42%</span></td>
+                      <td><span class="text-muted">0</span></td>
+                      <td><span class="text-danger fw-bold">8</span></td>
+                      <td><span class="badge bg-light text-dark fs-6 border rounded-pill">89</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="badge bg-success-subtle text-success float-start me-1"><i class="bi bi-chat-left-text-fill"></i></span>
+                        <div class="fw-bold">Friday Night Live Event SMS</div>
+                      </td>
+                      <td>850</td>
+                      <td>768 <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> 64%</span></td>
+                      <td>357 <span class="badge-trend-down"><i class="bi bi-caret-down-fill"></i> 42%</span></td>
+                      <td><span class="text-danger fw-bold">12</span></td>
+                      <td><span class="text-muted">0</span></td>
+                      <td><span class="badge bg-light text-dark fs-6 border rounded-pill">45</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="badge bg-success-subtle text-success float-start me-1"><i class="bi bi-chat-left-text-fill"></i></span>
+                        <div class="fw-bold">Friday Night Live Event SMS</div>
+                      </td>
+                      <td>850</td>
+                      <td>768 <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> 64%</span></td>
+                      <td>357 <span class="badge-trend-down"><i class="bi bi-caret-down-fill"></i> 42%</span></td>
+                      <td><span class="text-danger fw-bold">12</span></td>
+                      <td><span class="text-muted">0</span></td>
+                      <td><span class="badge bg-light text-dark fs-6 border rounded-pill">45</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="badge bg-info-subtle text-primary float-start me-1"><i class="bi bi-bell-fill"></i></span>
+                        <div class="fw-bold">Weekend Special VIP Blast</div>
+                      </td>
+                      <td>1,200</td>
+                      <td>768 <span class="badge-trend-down"><i class="bi bi-caret-down-fill"></i> 64%</span></td>
+                      <td>357 <span class="badge-trend-up"><i class="bi bi-caret-up-fill"></i> 42%</span></td>
+                      <td><span class="text-muted">0</span></td>
+                      <td><span class="text-danger fw-bold">8</span></td>
+                      <td><span class="badge bg-light text-dark fs-6 border rounded-pill">89</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- RECENT ACTIVITY FEED -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-clock-history text-secondary"></i> Recent Activity Feed</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="activity-item">
+                <div class="activity-icon bg-success-subtle text-success"><i class="bi bi-person-check-fill fs-5"></i></div>
+                <div class="lh-base">
+                  <div class="small"><strong>Sarah M.</strong> joined your VIP list.</div>
+                  <span class="text-muted d-flex align-items-center gap-1" style="font-size:0.78125rem;"><i class="bi bi-clock me-1 lh-sm" style="font-size:13px;"></i> 5 mins ago</span>
+                </div>
+                <div class="dropdown ms-auto">
+                  <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical fs-5"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
+                    <li><a class="dropdown-item" href="#">Action 1</a></li>
+                    <li><a class="dropdown-item" href="#">Action 2</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon bg-primary-subtle text-primary"><i class="bi bi-tag-fill fs-5"></i></div>
+                <div class="lh-base">
+                  <div class="small"><strong>Weekend Special</strong> offer was redeemed.</div>
+                  <span class="text-muted d-flex align-items-center gap-1" style="font-size:0.78125rem;"><i class="bi bi-clock me-1 lh-sm" style="font-size:13px;"></i> 22 mins ago</span>
+                </div>
+                <div class="dropdown ms-auto">
+                  <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical fs-5"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
+                    <li><a class="dropdown-item" href="#">Action 1</a></li>
+                    <li><a class="dropdown-item" href="#">Action 2</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon bg-warning-subtle text-warning"><i class="bi bi-check-circle-fill fs-5"></i></div>
+                <div class="lh-base">
+                  <div class="small"><strong>12 people</strong> viewed your upcoming event.</div>
+                  <span class="text-muted d-flex align-items-center gap-1" style="font-size:0.78125rem;"><i class="bi bi-clock me-1 lh-sm" style="font-size:13px;"></i> 1 hour ago</span>
+                </div>
+                <div class="dropdown ms-auto">
+                  <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical fs-5"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
+                    <li><a class="dropdown-item" href="#">Action 1</a></li>
+                    <li><a class="dropdown-item" href="#">Action 2</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon bg-success-subtle text-success"><i class="bi bi-chat-left-text-fill fs-5"></i></div>
+                <div class="lh-base">
+                  <div class="small">Your SMS campaign was delivered to <strong>286 people</strong></div>
+                  <span class="text-muted d-flex align-items-center gap-1" style="font-size:0.78125rem;"><i class="bi bi-clock me-1 lh-sm" style="font-size:13px;"></i> 2 hour ago</span>
+                </div>
+                <div class="dropdown ms-auto">
+                  <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical fs-5"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
+                    <li><a class="dropdown-item" href="#">Action 1</a></li>
+                    <li><a class="dropdown-item" href="#">Action 2</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon bg-danger-subtle text-danger"><i class="bi bi-tag-fill fs-5"></i></div>
+                <div class="lh-base">
+                  <div class="small">Your offer expires in <strong>3 days</strong></div>
+                  <span class="text-muted d-flex align-items-center gap-1" style="font-size:0.78125rem;"><i class="bi bi-clock me-1 lh-sm" style="font-size:13px;"></i> 3 hour ago</span>
+                </div>
+                <div class="dropdown ms-auto">
+                  <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical fs-5"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
+                    <li><a class="dropdown-item" href="#">Action 1</a></li>
+                    <li><a class="dropdown-item" href="#">Action 2</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="widget-footer">
+              <button class="tbn btn-primary btn-sm d-flex gap-1"><i class="bi bi-chevron-double-right"></i> View All</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-lg-4">
+
+          <!-- 8. ITEMS NEEDING ATTENTION Alerts -->
+          <div class="widget-box">
+            <div class="widget-header bg-danger-subtle">
+              <h5 class="widget-title text-danger"><i class="bi bi-exclamation-circle-fill"></i> Items Needing Attention</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="alert-item bg-danger-subtle text-danger">
+                <span><i class="bi bi-chat-left-text me-2"></i> Low SMS Credit <strong>Balance ($4.50)</strong></span>
+                <button class="btn btn-sm btn-danger">Top Up</button>
+              </div>
+              <div class="alert-item bg-danger-subtle text-danger">
+                <span><i class="bi bi-chat-left-text me-2"></i> <strong>8 SMS Messages</strong> got Failed</span>
+                <button class="btn btn-sm btn-danger">Fix</button>
+              </div>
+              <div class="alert-item bg-warning-subtle text-warning-emphasis">
+                <span><i class="bi bi-chat-left-text me-2 fs-6"></i> <strong>3 Message</strong> required your response</span>
+                <button class="btn btn-sm btn-warning">Engage</button>
+              </div>
+              <div class="alert-item bg-warning-subtle text-warning-emphasis">
+                <span><i class="bi bi-bell me-2 fs-6"></i> <strong>11 Push notifications</strong> awaiting approval</span>
+                <button class="btn btn-sm btn-warning">Approve</button>
+              </div>
+              <div class="alert-item bg-warning-subtle text-warning-emphasis">
+                <span><i class="bi bi-tag me-2 fs-6"></i> Offer "10% Off" expiring in <strong>2 days</strong></span>
+                <button class="btn btn-sm btn-warning">Extend</button>
+              </div>
+              <div class="alert-item bg-warning-subtle text-warning-emphasis">
+                <span><i class="bi bi-pencil-square me-2 fs-6"></i> <strong>5 Reviews</strong> required your response</span>
+                <button class="btn btn-sm btn-warning">Engage</button>
+              </div>
+              <div class="alert-item bg-warning-subtle text-warning-emphasis">
+                <span><i class="bi bi-calendar2-week me-2 fs-6"></i> Event happening in <strong>2 days</strong></span>
+                <button class="btn btn-sm btn-warning">Join</button>
+              </div>
+              <div class="alert-item bg-warning-subtle text-warning-emphasis">
+                <span><i class="bi bi-coin me-2 fs-6"></i> Subscription / Billing <strong>2 issues</strong></span>
+                <button class="btn btn-sm btn-warning">Fix</button>
+              </div>
+              <div class="alert-item bg-info-subtle text-info-emphasis">
+                <span><i class="bi bi-info-square me-2"></i> Incomplete Business Info <strong>(85%)</strong></span>
+                <button class="btn btn-sm btn-info text-white">Fix</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. SUGGESTED NEXT ACTION -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-lightbulb-fill text-warning"></i> Suggested Next Actions</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="px-3 py-2 bg-light rounded-3 mb-3 border">
+                <div class="d-flex align-items-center gap-2 text-primary fw-bold small mb-1">
+                  <i class="bi bi-magic fs-5"></i> Ai RECOMMENDATION
+                </div>
+                <p class="mb-2 small">You haven't contacted your VIP members in 14 days.</p>
+                <button class="btn btn-outline-primary btn-sm rounded-pill w-100 mb-2"><i class="bi bi-send-fill me-1"></i> Send Engagement Message</button>
+              </div>
+              <div class="px-3 py-2 bg-light rounded-3 mb-3 border">
+                <p class="mb-2 small">Your VIP list grew by 22 people this month. Welcome them with an offer.</p>
+                <button class="btn btn-outline-primary btn-sm rounded-pill w-100 lh-sm mb-2"><i class="bi bi-tag-fill fs-6 me-1"></i> Create Welcome Offer</button>
+              </div>
+              <div class="px-3 py-2 bg-light rounded-3 mb-3 border">
+                <p class="mb-2 small">Create an offer for your event this weekend.</p>
+                <button class="btn btn-outline-primary btn-sm rounded-pill w-100 lh-sm mb-2"><i class="bi bi-tag-fill fs-6 me-1"></i> Create an Offer</button>
+              </div>
+              <div class="px-3 py-2 bg-light rounded-3 mb-3 border">
+                <p class="mb-2 small">Your Tuesday messages receive the most engagement.</p>
+                <button class="btn btn-outline-primary btn-sm rounded-pill w-100 lh-sm mb-2"><i class="bi bi-tag-fill fs-6 me-1"></i> Create an Offer</button>
+              </div>
+              <div class="px-3 py-2 bg-light rounded-3 border">
+                <p class="mb-2 small">Your offer expires tomorrow. Extend it or create a replacement.</p>
+                <button class="btn btn-outline-primary btn-sm rounded-pill w-100 lh-sm mb-2"><i class="bi bi-tag-fill fs-6 me-1"></i> Extend the Offer</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. UPCOMING EVENTS -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-calendar3" style="color:#8b5cf6;"></i> Upcoming Events</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="event-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold mb-0">VIP Wine Tasting Night</h6>
+                  <span class="badge bg-primary-subtle text-primary"><i class="bi bi-clock me-1" style="font-size:13px;"></i> Tomorrow, 7:00 PM</span>
+                </div>
+                <p class="text-muted small mb-2">Exclusive wine tasting session for VIP tier members.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="avatar-group">
+                    <img src="https://i.pravatar.cc/100?img=12" alt="User">
+                    <img src="https://i.pravatar.cc/100?img=25" alt="User">
+                    <img src="https://i.pravatar.cc/100?img=47" alt="User">
+                    <div class="avatar-more text-primary">+42</div>
+                  </div>
+                  <div>
+                    <span class="badge-trend-up"><i class="bi bi-check-circle"></i> 56 views</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end mt-2">
+                  <button class="btn btn-outline-secondary btn-sm d-flex gap-1"><i class="bi bi-megaphone"></i> Promote</button>
+                  <button class="btn btn-outline-secondary btn-sm d-flex gap-1"><i class="bi bi-pencil-square"></i> Edit</button>
+                  <button class="btn btn-outline-secondary btn-sm d-flex gap-1"><i class="bi bi-copy"></i> Duplicate</button>
+                </div>
+              </div>
+            </div>
+            <div class="widget-footer">
+              <button class="btn btn-primary btn-sm d-flex gap-1"><i class="bi bi-chevron-double-right"></i> View All</button>
+            </div>
+          </div>
+
+          <!-- 10. BUSINESS LISTING HEALTH -->
+          <div class="widget-box">
+            <div class="widget-header">
+              <h5 class="widget-title"><i class="bi bi-check2-circle text-success fs-5"></i> Listing Health</h5>
+              <div class="widget-controls">
+                <button class="btn-toggle"><i class="bi bi-chevron-up"></i></button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="fw-semibold">Profile Completion</span>
+                <span class="fw-bold text-success">85%</span>
+              </div>
+              <div class="health-bar-container mb-3">
+                <div class="health-bar-fill" style="width:85%;"></div>
+              </div>
+
+              <div class="row g-2 text-center small">
+                <div class="col-6"><div class="py-2 border rounded"><strong>1,840</strong> <br><span class="text-muted">Listing Views</span></div></div>
+                <div class="col-6"><div class="py-2 border rounded"><strong>310</strong> <br><span class="text-muted">Website Clicks</span></div></div>
+                <div class="col-6"><div class="py-2 border rounded"><strong>84</strong> <br><span class="text-muted">Phone Calls</span></div></div>
+                <div class="col-6"><div class="py-2 border rounded"><strong>125</strong> <br><span class="text-muted">Directions Requests</span></div></div>
+                <div class="col-6"><div class="py-2 border rounded"><strong>624</strong> <br><span class="text-muted">Social Media Clicks</span></div></div>
+                <div class="col-6"><div class="py-2 border rounded"><strong>31</strong> <br><span class="text-muted">Photos Uploaded</span></div></div>
+                <div class="col-6"><div class="py-2 border rounded"><strong>09</strong> <br><span class="text-muted">Hours / Contact Status</span></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="blazor-error-ui" style="display:none; width:calc(100% - var(--sidebar-width)); right:0; left:auto; background:rgba(rgba(255,153,51,0.92)); color:#000; font-weight:bold;">
+An error has occurred.
+<a href="" class="reload">Reload</a>
+<a class="dismiss">🗙</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<script src="http://20.106.237.166:5202/_content/Cropper.Blazor/cropper.min.js"></script>
+<script src="http://20.106.237.166:5202/js/businessLocationMap.js"></script>
+<script src="http://20.106.237.166:5202/js/messaging-scroll.js"></script>
+<script src="http://20.106.237.166:5202/_framework/blazor.server.js"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Dashboard ONLY Custom JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Collapsible Cards Functionality
+  document.querySelectorAll('.widget-header').forEach(function(header) {
+    header.addEventListener('click', function(e) {
+      const btnToggle = e.target.closest('.btn-toggle');
+      const isHeaderOrTitle = e.target.classList.contains('widget-header') || e.target.classList.contains('widget-title');
+      
+      if (btnToggle || isHeaderOrTitle) {
+        const widgetBox = this.closest('.widget-box');
+        const widgetBody = widgetBox.querySelector('.widget-body');
+        const icon = this.querySelector('.btn-toggle i');
+        const isCollapsed = widgetBody.classList.toggle('collapsed');
+
+        if (isCollapsed) {
+          icon.classList.remove('bi-chevron-up');
+          icon.classList.add('bi-chevron-down');
+        } else {
+          icon.classList.remove('bi-chevron-down');
+          icon.classList.add('bi-chevron-up');
+        }
+      }
+    });
+  });
+
+  // Toggle Button "All Widgets"
+  let allExpanded = true;
+  const toggleBtn = document.getElementById('toggleAllWidgets');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      const widgetBodies = document.querySelectorAll('.widget-body');
+      const icons = document.querySelectorAll('.widget-controls .btn-toggle i');
+
+      if (allExpanded) {
+        widgetBodies.forEach(body => body.classList.add('collapsed'));
+        icons.forEach(icon => {
+          icon.classList.remove('bi-chevron-up');
+          icon.classList.add('bi-chevron-down');
+        });
+        allExpanded = false;
+      } else {
+        widgetBodies.forEach(body => body.classList.remove('collapsed'));
+        icons.forEach(icon => {
+          icon.classList.remove('bi-chevron-down');
+          icon.classList.add('bi-chevron-up');
+        });
+        allExpanded = true;
+      }
+    });
+  }
+
+  // Sparkline Charts
+  const sparkCtx1 = document.getElementById('sparkline1').getContext('2d');
+  new Chart(sparkCtx1, {
+    type: 'line',
+    data: {
+      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      datasets: [{
+        data: [12, 19, 15, 25, 22, 30, 28],
+        borderColor: '#10b981',
+        borderWidth: 2,
+        tension: 0.4,
+        pointRadius: 0,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { display: false }, y: { display: false } }
+    }
+  });
+
+  const sparkCtx2 = document.getElementById('sparkline2').getContext('2d');
+  new Chart(sparkCtx2, {
+    type: 'line',
+    data: {
+      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      datasets: [{
+        data: [5, 10, 8, 15, 20, 25, 32],
+        borderColor: '#4f46e5',
+        borderWidth: 2,
+        tension: 0.4,
+        pointRadius: 0,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { display: false }, y: { display: false } }
+    }
+  });
+
+  // Growth Chart
+  const growthCtx = document.getElementById('growthChart').getContext('2d');
+  new Chart(growthCtx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [
+        {
+          label: 'New Connections',
+          data: [65, 80, 95, 110, 128, 142],
+          borderColor: '#4f46e5',
+          backgroundColor: 'rgba(79, 70, 229, 0.1)',
+          fill: true,
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: true, position: 'top' } },
+      scales: {
+        y: { grid: { borderDash: [4, 4] } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>

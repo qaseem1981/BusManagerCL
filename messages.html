@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messages - Business Manager</title>
+<link rel="icon" type="image/png" sizes="32x32" href="https://business.localproject.net/favicon-32x32.png">
+<link rel="stylesheet" href="css/design-tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://business.localproject.net/_content/Cropper.Blazor/cropper.min.css">
+<link rel="stylesheet" href="https://business.localproject.net/css/tokens.css">
+<link rel="stylesheet" href="https://business.localproject.net/css/app.css">
+<link rel="stylesheet" href="css/messages.css">
+<link rel="stylesheet" href="https://business.localproject.net/AllAboutLocal.Clients.BusinessManagerApp.styles.css">
+<style>
+body {transition:opacity ease-in 0.2s; } 
+body[unresolved] {opacity:0; display:block; overflow:hidden; position:relative; } 
+</style>
+
+</head>
+<body>
+
+<div class="app-layout"><aside class="sidebar"><div class="sidebar-brand"><span class="brand-mark">CL</span><span><span class="brand-name">ConnectLocal</span><span class="brand-scope">Business Manager</span></span></div><nav class="sidebar-nav"><div class="nav-user-summary"><span class="nav-user-label">Signed in as</span><span class="nav-user-email" title="mike@mikesauto.com">mike@mikesauto.com</span></div><div class="nav-section-label">Overview</div><a href="" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>Dashboard</a><div class="nav-section-label">Business</div><a href="businesses" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Businesses</a><a href="business-connections" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg>Connect Requests</a><div class="nav-section-label">Commerce</div><a href="offers" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>Offers</a><a href="loyalty/programs" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.2l-5.6 3 1.1-6.2L3 8.6l6.2-.9L12 2z"></path></svg>Loyalty</a><a href="bulk" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>Bulk</a><a href="redemptions/ops" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>Redemption Ops</a><a href="reports" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>Reports</a><div class="nav-section-label">Messaging</div><a href="messages" class="nav-item active" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 9h8"></path><path d="M8 13h5"></path></svg>Messages</a><a href="sms/subscribers" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>VIP Subscribers</a><a href="sms/broadcasts" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-7-8-3z"></path><path d="M11 14l4-4"></path></svg>VIP Broadcasts</a><div class="nav-section-label">Calendar</div><a href="events" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Events</a></nav><div class="sidebar-footer"><div class="user-chip"><div class="user-avatar">M</div><div class="user-info"><span class="user-name">Mike Johnson</span><span class="user-role">BusinessAdmin</span></div></div></div></aside><div class="main"><header class="topbar"><div class="topbar-left"><h1 class="topbar-title" tabindex="-1">Business Manager</h1><span class="topbar-breadcrumb">Business workspace / Business Manager</span></div><div class="topbar-right"><label class="topbar-search" aria-label="Search business workspace"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg><input type="search" placeholder="Search..."></label><button class="icon-button" type="button" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span class="notification-dot"></span></button><span class="topbar-avatar" aria-hidden="true">M</span><button class="btn btn-sm btn-outline-danger btn-with-icon" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>Sign Out</button></div></header><div class="page-contentt">
+
+<div class="section-stack chat-area">
+
+    <!-- chatlist -->
+    <div class="chatlist">
+        <div class="modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="chat-header">
+                    <div class="d-flex align-items-center">
+                        <div class="form-floating">
+                            <select id="inbox-business" class="form-select">
+                                <option value="019b76dd-0100-7003-806f-010000000003">Mike's Auto Shop</option>
+                                <option value="019e82e3-177b-7c3e-83a5-7d2b6c7ede81">Pizza Max</option>
+                                <option value="019e82eb-6a3f-7fcd-8739-195c1926cf9e">Imtiaz mega Korangi</option>
+                                <option value="019f40b6-3fb3-7e2d-a750-28a2f579f7a8">George Test Busines</option>
+                                <option value="019f47c3-7f39-73f7-adf5-1f3d933d9427">new Business</option>
+                            </select>
+                            <label for="inbox-business" class="d-flex align-items-center gap-1"><i class="bi bi-shop-window" style="margin-top:-2px;"></i> Business</label>
+                        </div>
+                        <div class="btn-group">
+                            <button class="nav-link dropdown-toggle ms-2 me-0" type="button" title="Filter" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-sliders"></i></button>
+                            <ul id="inbox-filter" class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item" name="all">All</button></li>
+                                <li><button class="dropdown-item" name="open">Open</button></li>
+                                <li><button class="dropdown-item" name="unread">Unread</button></li>
+                                <li><button class="dropdown-item" name="direct">Direct</button></li>
+                                <li><button class="dropdown-item" name="business">Business</button></li>
+                                <li><button class="dropdown-item" name="groups">Groups</button></li>
+                                <li><button class="dropdown-item" name="mine">Mine</button></li>
+                                <li><button class="dropdown-item" name="unassigned">Unassigned</button></li>
+                                <li><button class="dropdown-item" name="resolved">Resolved</button></li>
+                            </ul>
+                            <button class="nav-link dropdown-toggle position-relative btn-refresh" type="button" title="Refresh">
+                                <i class="bi bi-arrow-clockwise position-relative z-1"></i>
+                                <span class="badge rounded-pill position-absolute top-0 start-50 translate-middle inbox-unread-total" aria-label="Unread messages">99+</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-1">
+                        <input id="inbox-search" class="form-control"  type="text"placeholder="Search Messages or People" aria-label="Search Messages or People" />
+                        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                    </div>
+
+                    <div class="inbox-connections-panel d-flex align-items-start justify-content-between">
+                        <div class="inbox-connections-header order-1 fs-4 lh-1 fw-bold text-center text-secondary">512</div>
+                        <div class="inbox-connection-summary order-0">
+                            <h6 class="d-flex gap-1 text-black fw-bold"><i class="bi bi-arrow-repeat"></i> Connections</h6>
+                            <p class="text-truncate">Accepted users can start conversations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <!-- chat-lists -->
+                    <div class="chat-lists">
+
+                        <!-- chat-list -->
+                        <div class="chat-list conversation-list">
+                            <button class="conversation-list-item d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <span class="profile-pic">HU</span>
+                                    <span class="active"></span>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h2 class="text-truncate">Hours update</h2>
+                                    <p class="text-truncate"><small>Open • Unassigned</small> • <span>No SLA</span></p>
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="conversation-time">00:00 PM</span>
+                                    <div class="d-flex align-items-center">
+                                        <div class="conversation-unread">2</div>
+                                        <div class="btn-group chat-list-item-action">
+                                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" title="Options" role="button" aria-expanded="false"> <i class="bi bi-chevron-down"></i> </a>
+                                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-bell-slash"></i> Mute Notifications</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-bell"></i> Unmute Notifications</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-pin"></i> Pin Chat</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-pin-angle"></i> Unpin Chat</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-envelope-open"></i> Mark as Read</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-envelope"></i> Mark as Unread</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-ban"></i> Block User</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-check-circle"></i> Unblock User</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-trash3"></i> Delete Chat</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="conversation-list-item d-flex align-items-center active">
+                                <div class="flex-shrink-0">
+                                    <span class="profile-pic">JD</span>
+                                    <span class="active"></span>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h2 class="text-truncate">Jane Doe</h2>
+                                    <p class="text-truncate"><small>Open • Unassigned</small> • <span>No SLA</span></p>
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="conversation-time">Jul 10</span>
+                                    <div class="d-flex align-items-center">
+                                        <div class="conversation-unread d-none">2</div>
+                                        <div class="btn-group chat-list-item-action">
+                                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" title="Options" role="button" aria-expanded="false"> <i class="bi bi-chevron-down"></i> </a>
+                                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-bell-slash"></i> Mute Notifications</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-bell"></i> Unmute Notifications</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-pin"></i> Pin Chat</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-pin-angle"></i> Unpin Chat</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-envelope-open"></i> Mark as Read</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-envelope"></i> Mark as Unread</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-ban"></i> Block User</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-check-circle"></i> Unblock User</a></li>
+                                                <li><a href="#" class="dropdown-item d-flex align-items-center gap-2"><i class="bi bi-trash3"></i> Delete Chat</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <!-- chat-list -->
+
+                    </div>
+                    <!-- chat-lists -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- chatlist -->
+
+    <!-- chatbox -->
+    <div class="chatbox">
+        <div class="modal-dialog-scrollable">
+            <div class="modal-content inbox-thread">
+
+                <div class="tab-placeholder" style="display:none;">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                    <div style="font-weight:700;font-size:16px;margin-bottom:6px;">Messages</div>
+                    <div>Select any item from Inbox List at left.</div>
+                </div>
+
+                <div class="msg-head">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <span class="profile-pic">JD</span>
+                        </div>
+                        <div class="flex-grow-1 ms-2">
+                            <h2 class="text-truncate">Jane Doe</h2>
+                            <p class="text-truncate">Open • No SLA</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></button>
+                            <ul class="dropdown-menu dropdown-menu-end px-2 py-1">
+                                <li><button class="dropdown-item"><i class="bi bi-chevron-right"></i> Assign to me</button></li>
+                                <li><button class="dropdown-item"><i class="bi bi-chevron-right"></i> Resolve</button></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <small>Assignment: Unassigned</small>
+                                    <div class="input-group mb-2">
+                                        <input class="form-control" placeholder="Assign user id" type="text" />
+                                        <button class="btn btn-secondary"><i class="bi bi-caret-right-fill"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+
+                    <!--Broadcast Chat-->
+                    <div class="msg-body broadcast">
+                        <div class="divider"><h6>Jun 23, 2026</h6></div>
+                        <ul class="bubbles incoming">
+                            <li>
+                                <span class="sender-label">Jane Doe</span>
+                                Hello, how are you, buddy?
+                                <span class="time">
+                                    10:06 am
+                                </span>
+                            </li>
+                            <li>
+                                Test george push
+                                <span class="time">
+                                    10:06 am
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="divider"><h6>Jun 23, 2026</h6></div>
+                        <ul class="bubbles incoming">
+                            <li>
+                                <span class="sender-label">Jane Doe</span>
+                                Test george push
+                                <span class="time">
+                                    10:06 am
+                                </span>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <!--Personal / One to One Chat-->
+                    <div class="msg-body personal">
+                        <div class="divider"><h6>Jun 23, 2026</h6></div>
+                        <ul class="bubbles outgoing">
+                            <li>
+                                <span class="sender-label">You</span>
+                                Message've been read / seen
+                                <span class="time">
+                                    10:07 am
+                                    <span class="bubble-read" title="Read"><i class="bi bi-check-all"></i></span>
+                                </span>
+                            </li>
+                            <li>
+                                Received message
+                                <span class="time">
+                                    10:07 am
+                                    <span class="bubble-receive" title="Received"><i class="bi bi-check-all"></i></span>
+                                </span>
+                            </li>
+                            <li>
+                                Sent message
+                                <span class="time">
+                                    10:07 am
+                                    <span class="bubble-send" title="Sent"><i class="bi bi-check"></i></span>
+                                </span>
+                            </li>
+                            <li>
+                                Unsent message
+                                <span class="time">
+                                    10:07 am
+                                    <span class="bubble-unsend" title="Unsent"><i class="bi bi-clock"></i></span>
+                                </span>
+                            </li>
+                            <li>
+                                Error message
+                                <span class="time">
+                                    <!-- 10:07 am -->
+                                    <span class="bubble-error" title="Error"><i class="bi bi-exclamation-triangle"></i></span>
+                                </span>
+                            </li>
+                        </ul>
+                        <!-- <div class="divider"><h6>Jul 10, 2026</h6></div> -->
+                        <ul class="bubbles incoming">
+                            <li>
+                                <span class="sender-label">Jane Doe</span>
+                                Hello, how are you, buddy?
+                                <span class="time">
+                                    10:06 am
+                                </span>
+                            </li>
+                            <li>
+                                Test george push
+                                <span class="time">
+                                    10:06 am
+                                </span>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="send-box">
+                    <div class="gemini-input-container d-flex align-items-center gap-2">
+                        <div id="messageInput" class="form-control gemini-textarea flex-grow-1" data-placeholder="Type a message..." data-empty="true" contenteditable="true" role="textbox" aria-multiline="true"></div>
+
+                        <div class="dropdown">
+                            <button id="sendModeDropdown" class="btn gemini-dropdown-btn dropdown-toggle d-flex align-items-center gap-1" data-bs-toggle="dropdown" aria-expanded="false">
+                                as <span id="sendModeSelected">Reply</span>
+                            </button>
+                            <ul id="sendModeMenu" aria-labelledby="sendModeDropdown" class="dropdown-menu dropdown-menu-end shadow-sm">
+                                <li><a href="#" class="dropdown-item d-flex align-items-center justify-content-between gap-2 active" data-model="Reply">Reply <i class="bi bi-check-lg checkicon"></i></a></li>
+                                <li><a href="#" class="dropdown-item d-flex align-items-center justify-content-between gap-2" data-model="Note">Note</a></li>
+                            </ul>
+                        </div>
+
+                        <button id="saveBtn" class="btn gemini-btn" title="Save Draft" disabled> <i class="bi bi-floppy fs-5"></i> </button>
+                        <button id="sendBtn" class="btn gemini-btn" title="Send Message" disabled> <i class="bi bi-send-fill fs-5"></i> </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- chatbox -->
+
+</div>
+<!-- chat-area -->
+
+</div></div></div></div><div id="blazor-error-ui" class="d-none">An error has occurred.<a href="" class="reload">Reload</a><a class="dismiss">🗙</a></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://business.localproject.net/_content/Cropper.Blazor/cropper.min.js"></script>
+<script src="https://business.localproject.net/js/businessLocationMap.js"></script>
+<script src="https://business.localproject.net/js/messaging-scroll.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://business.localproject.net/js/dashboardCharts.js"></script>
+<script src="https://business.localproject.net/_framework/blazor.server.js"></script>
+
+<!-- Custom Chat Functions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const chatLinks = document.querySelectorAll('.chat-list a');
+    chatLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const chatboxes = document.querySelectorAll('.chatbox');
+            chatboxes.forEach(function(box) {
+                box.classList.add('showbox');
+            });
+        });
+    });
+
+    const backLinks = document.querySelectorAll('.back-link');
+    backLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const chatboxes = document.querySelectorAll('.chatbox');
+            chatboxes.forEach(function(box) {
+                box.classList.remove('showbox');
+            });
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const messageInput = document.getElementById('messageInput');
+    const saveBtn = document.getElementById('saveBtn');
+    const sendBtn = document.getElementById('sendBtn');
+    const sendModeMenu = document.getElementById('sendModeMenu');
+    const sendModeLabel = document.getElementById('sendModeSelected');
+
+    function validateInput() {
+        const text = messageInput.innerText.trim();
+
+        if (text.length > 0) {
+            messageInput.removeAttribute('data-empty');
+            saveBtn.removeAttribute('disabled');
+            sendBtn.removeAttribute('disabled');
+            saveBtn.classList.add('text-primary', 'd-flex');
+            sendBtn.classList.add('text-primary', 'd-flex');
+        } else {
+            messageInput.setAttribute('data-empty', 'true');
+            saveBtn.setAttribute('disabled', 'true');
+            sendBtn.setAttribute('disabled', 'true');
+            saveBtn.classList.remove('text-primary', 'd-flex');
+            sendBtn.classList.remove('text-primary', 'd-flex');
+        }
+    }
+
+    messageInput.addEventListener('input', validateInput);
+    messageInput.addEventListener('keyup', validateInput);
+    messageInput.addEventListener('blur', validateInput);
+
+    sendModeMenu.addEventListener('click', (e) => {
+        const targetOption = e.target.closest('.dropdown-item');
+        if (!targetOption) return;
+
+        e.preventDefault();
+
+        const modelName = targetOption.getAttribute('data-model');
+        sendModeLabel.innerText = modelName;
+
+        const allItems = sendModeMenu.querySelectorAll('.dropdown-item');
+        allItems.forEach(item => item.classList.remove('active'));
+
+        let checkIcon = sendModeMenu.querySelector('.checkicon');
+        if (!checkIcon) {
+            checkIcon = document.createElement('i');
+            checkIcon.className = 'bi bi-check-lg checkicon';
+        }
+        
+        targetOption.appendChild(checkIcon);
+        targetOption.classList.add('active');
+    });
+});
+</script>
+
+</body>
+</html>
