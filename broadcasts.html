@@ -14,8 +14,357 @@
 <link rel="stylesheet" href="https://business.localproject.net/css/app.css">
 <link rel="stylesheet" href="https://business.localproject.net/AllAboutLocal.Clients.BusinessManagerApp.styles.css">
 
+</head>
+<body>
+
+<div class="app-layout"><aside class="sidebar"><div class="sidebar-brand"><span class="brand-mark">CL</span><span><span class="brand-name">ConnectLocal</span><span class="brand-scope">Business Manager</span></span></div>
+<nav class="sidebar-nav">
+    <div class="nav-user-summary">
+        <span class="nav-user-label">Signed in as</span>
+        <span class="nav-user-email" title="mike@mikesauto.com">mike@mikesauto.com</span>
+    </div>
+    <div class="nav-section-label">Overview</div>
+    <a class="nav-item" href="dashboard.html" aria-current="page">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Dashboard
+    </a>
+    <div class="nav-section-label">Business</div>
+    <a class="nav-item" href="businesses">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        My Business Locations
+    </a>
+    <div class="nav-section-label">Offers & Promotions</div>
+    <a class="nav-item" href="offers">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+        Manage Offers
+    </a>
+    <a class="nav-item" href="loyalty/programs">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.2l-5.6 3 1.1-6.2L3 8.6l6.2-.9L12 2z"></path></svg>
+        LocalREWARDS
+    </a>
+    <a class="nav-item" href=""><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        Keyword Campaigns
+    </a>
+    <div class="nav-section-label">VIP Messaging</div>
+    <a class="nav-item" href="messages.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 9h8"></path><path d="M8 13h5"></path></svg>
+        Inbox
+    </a>
+    <a class="nav-item" href="subscribers.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        VIP Subscribers
+    </a>
+    <a class="nav-item active" href="broadcasts.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-7-8-3z"></path><path d="M11 14l4-4"></path></svg>
+        VIP Campaign
+    </a>
+    <a class="nav-item" href="">
+        <i class="bi bi-gear nav-icon text-center lh-1"></i>
+        Messages Settings
+    </a>
+    <div class="nav-section-label">Calendar</div>
+    <a class="nav-item" href="events">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Events
+    </a>
+</nav>
+<div class="sidebar-footer"><div class="user-chip"><div class="user-avatar">M</div><div class="user-info"><span class="user-name">Mike Johnson</span><span class="user-role">BusinessAdmin</span></div></div></div></aside><div class="main"><header class="topbar"><div class="topbar-left"><h1 class="topbar-title" tabindex="-1">Business Manager</h1><span class="topbar-breadcrumb">Business workspace / Business Manager</span></div><div class="topbar-right"><label class="topbar-search" aria-label="Search business workspace"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg><input type="search" placeholder="Search..."></label><button class="icon-button" type="button" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span class="notification-dot"></span></button><span class="topbar-avatar" aria-hidden="true">M</span><button class="btn btn-sm btn-outline-danger btn-with-icon" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>Sign Out</button></div></header><div class="page-content">
+
+<div class="section-stack sms-broadcast-page">
+    <section class="page-heading">
+        <div>
+            <p class="section-eyebrow">Messaging</p>
+            <h1>VIP Message Composer</h1>
+        </div>
+    </section>
+    <section class="content-card broadcast-context-card">
+        <div class="broadcast-context-heading">
+            <div>
+                <h2>Broadcast context</h2>
+                <p>Select the business first. Audience, content, and delivery choices stay scoped to it.</p>
+            </div>
+            <span class="broadcast-readiness-badge is-attention">Setup required</span>
+        </div>
+        <div class="broadcast-context-grid">
+            <div class="broadcast-context-business">
+                <label class="form-label" for="sms-broadcast-business">Business</label>
+                <select id="sms-broadcast-business" class="form-select">
+                    <option value="019f40b6-3fb3-7e2d-a750-28a2f579f7a8">George Test Busines</option>
+                    <option value="019e82eb-6a3f-7fcd-8739-195c1926cf9e">Imtiaz mega Korangi</option>
+                    <option value="019b76dd-0100-7003-806f-010000000003">Mike's Auto Shop</option>
+                    <option value="019f47c3-7f39-73f7-adf5-1f3d933d9427">new Business</option>
+                    <option value="019e82e3-177b-7c3e-83a5-7d2b6c7ede81">Pizza Max</option>
+                </select>
+            </div>
+            <div class="broadcast-context-stat">
+                <span>SMS setup</span>
+                <strong>Not requested</strong>
+            </div>
+            <div class="broadcast-context-stat">
+                <span>Current audience</span>
+                <strong>Master List</strong>
+            </div>
+        </div>
+    </section>
+
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-secondary rounded-pill" onclick="location.href='broadcasts-history.html'">Message History <i class="bi bi-arrow-right"></i></button>
+    </div>
+
+    <section class="content-card broadcast-composer">
+        
+        <div class="broadcast-composer-heading">
+            <div>
+                <span class="broadcast-step-kicker">Guided composer</span>
+                <h2>Create a broadcast draft</h2>
+                <p>Choose the audience, write the message, then confirm delivery details before saving.</p>
+            </div>
+            <span class="broadcast-draft-badge">Draft only</span>
+        </div>
+        <div class="broadcast-workflow-grid">
+            <div class="broadcast-workflow-main">
+                <section class="broadcast-step-card" aria-labelledby="broadcast-audience-heading">
+                    <div class="broadcast-step-heading">
+                        <span class="broadcast-step-number">1</span>
+                        <div>
+                            <h3 id="broadcast-audience-heading">Audience</h3>
+                            <p>Choose who should receive this broadcast.</p>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="sms-audience">Audience source</label>
+                            <select id="sms-audience" class="form-select">
+                                <option value="MasterList">Master List</option>
+                                <option value="vips">VIPs</option>
+                                <option value="auto">Auto Shop Customers</option>
+                                <option value="Tags">Subscribers matching tags</option>
+                            </select>
+                        </div>
+                    </div>
+                    <details class="broadcast-disclosure">
+                        <summary>Advanced delivery channel</summary>
+                        
+                        <div class="broadcast-disclosure-body">
+                            <h6 class="fw-bold mb-3">Channel</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="smsChannelMode" id="smsChannelModeAuto" value="Auto" checked>
+                                <label class="form-check-label" for="smsChannelModeAuto">Recommended: push with SMS fallback</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="smsChannelMode" id="smsChannelModeForceSms" value="ForceSms">
+                                <label class="form-check-label" for="smsChannelModeForceSms">Force SMS only</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="smsChannelMode" id="smsChannelModeBoth" value="Both">
+                                <label class="form-check-label" for="smsChannelModeBoth">Send through both channels</label>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+                <section class="broadcast-step-card" aria-labelledby="broadcast-message-heading">
+                    <div class="broadcast-step-heading">
+                        <span class="broadcast-step-number">2</span>
+                        <div>
+                            <h3 id="broadcast-message-heading">Compose message</h3>
+                            <p>Write a concise message and preview its SMS size as you type.</p>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-7">
+                            <div class="broadcast-message-label" style="margin-top:5px;">
+                                <label for="sms-headline" class="form-label">Headline</label>
+                                <span><span id="charCounter">160</span> characters</span>
+                            </div>
+                            <input id="sms-headline" class="form-control" name="_composer.Headline" type="text" maxlength="160" placeholder="Weekend Special" aria-describedby="charCounter" />
+                        </div>
+                        <div class="col-md-4 ms-auto">
+                            <label class="form-label" for="sms-headline-preset">Start from a preset</label>
+                            <div class="input-group">
+                                <select id="sms-headline-preset" class="form-select">
+                                    <option value="">Select a preset</option>
+                                    <option value="offer">Limited-time offer</option>
+                                    <option value="event">Event reminder</option>
+                                    <option value="hours">Hours update</option>
+                                    <option value="new">New arrival</option>
+                                </select>
+                                <button type="button" class="btn btn-outline-secondary" disabled="">Apply</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <div class="btn-group d-inline-flex align-items-center gap-1">
+                                <label class="form-label" style="margin-bottom:0!important;">Optional Insert:</label>
+                                <button data-bs-target="#pills-offer" class="reveal-btn btn btn-outline-secondary btn-sm d-flex align-items-center gap-1" data-bs-toggle="collapse">Offer</button>
+                                <button data-bs-target="#pills-event" class="reveal-btn btn btn-outline-secondary btn-sm d-flex align-items-center gap-1" data-bs-toggle="collapse">Event</button>
+                            </div>
+                            <div id="pills-offer" class="row collapse mb-2">
+                                <div class="col-md-7">
+                                    <label for="sms-offer-reference" class="form-label">Select an offer</label>
+                                    <select id="sms-offer-reference" class="form-select">
+                                        <option value="">No offer selected</option>
+                                    </select>
+                                    <div class="form-text">Required when the message uses the offer title.</div>
+                                </div>
+                                <div class="col-md-4 ms-auto">
+                                    <div class="selected-offer-summary is-empty">
+                                        <span>Selected offer title</span>
+                                        <strong>Select an offer to resolve {offer.title}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="pills-event" class="row collapse mb-2">
+                                <div class="col-md-7">
+                                    <label for="sms-event-reference" class="form-label">Select an event</label>
+                                    <select id="sms-event-reference" class="form-select">
+                                        <option value="">No event selected</option>
+                                    </select>
+                                    <div class="form-text">Required when the message uses the event title.</div>
+                                </div>
+                                <div class="col-md-4 ms-auto">
+                                    <div class="selected-offer-summary is-empty">
+                                        <span>Selected event title</span>
+                                        <strong>Select an event to resolve {event.title}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="broadcast-message-label">
+                                <label class="form-label" for="sms-body">Message</label>
+                                <span>0 characters · 0 segments</span>
+                            </div>
+                            <textarea id="sms-body" class="form-control broadcast-message-input" rows="7" placeholder="Tell your VIP subscribers what is available and what they should do next."></textarea>
+                        </div>
+                    </div>
+                    <details class="broadcast-disclosure">
+                        <summary>Optional campaign or image</summary>
+                        <div class="broadcast-disclosure-body">
+                            <div class="reference-panel__header">
+                                <div>
+                                    <h3>Optional content</h3>
+                                    <p>Attach a campaign or image when it adds value to the message.</p>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label" for="sms-campaign-reference">Campaign</label>
+                                    <select id="sms-campaign-reference" class="form-select">
+                                        <option value="">No campaign</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="sms-image">Image</label>
+                                    <select id="sms-image" class="form-select">
+                                        <option value="">No image</option>
+                                    </select>
+                                    <div class="media-picker-actions">
+                                        <input class="form-control" accept="image/*" type="file" _bl_f7b103cc-b6e4-4b1e-b910-630cf525cd93="">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" disabled="">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+                <section class="broadcast-step-card" aria-labelledby="broadcast-delivery-heading">
+                    <div class="broadcast-step-heading">
+                        <span class="broadcast-step-number">3</span>
+                        <div>
+                            <h3 id="broadcast-delivery-heading">Delivery</h3>
+                            <p>Keep the draft ready for manual queueing or attach a preferred schedule.</p>
+                        </div>
+                    </div>
+                    <div class="broadcast-choice-grid" role="group" aria-label="Delivery timing">
+                        <button id="choiceLater" class="broadcast-choice position-relative" type="button" aria-pressed="false">
+                            <strong>Schedule Later</strong>
+                            <span>Store a preferred date and time with the draft.</span>
+                        </button>
+                        <button id="choiceNow" class="broadcast-choice position-relative active" type="button" aria-pressed="true">
+                            <strong>Send Now</strong>
+                            <span>Immediately send the message to selected audience.</span>
+                        </button>
+                    </div>
+                    <div class="broadcast-schedule-field d-none">
+                        <label class="form-label" for="sms-scheduled-for">Preferred delivery date and time</label>
+                        <input id="sms-scheduled-for" type="datetime-local" name="_scheduledForLocal" class="form-control" _bl_8bd6ddfb-6882-4783-8c0b-640c2a4e6b35="">
+                        <div class="form-text">The broadcast remains a draft until it is queued through History.</div>
+                    </div>
+                    <details class="broadcast-disclosure">
+                        <summary>Send to test number</summary>
+                        <div class="broadcast-disclosure-body">
+                            <div class="test-send-panel">
+                                <div>
+                                    <label class="form-label" for="sms-test-phone">Test number</label>
+                                    <input id="sms-test-phone" placeholder="+15551234567" name="_testPhoneInput" class="form-control" _bl_51220308-7c35-4b3d-9672-7ca1f5af821a="">
+                                </div>
+                                <div class="test-send-panel__actions">
+                                    <button type="button" class="btn btn-outline-secondary">Check test</button>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+            </div>
+            <aside class="broadcast-review-card" aria-labelledby="broadcast-review-heading">
+                <div class="broadcast-review-header">
+                    <span class="broadcast-step-kicker">Live summary</span>
+                    <h3 id="broadcast-review-heading">Review your draft</h3>
+                </div>
+                <dl class="broadcast-review-list">
+                    <div>
+                        <dt>Business</dt>
+                        <dd>Mike's Auto Shop</dd>
+                    </div>
+                    <div>
+                        <dt>Audience</dt>
+                        <dd>Master List</dd>
+                    </div>
+                    <div>
+                        <dt>Channel</dt>
+                        <dd>Push with SMS fallback</dd>
+                    </div>
+                    <div>
+                        <dt>Message size</dt>
+                        <dd>GSM-7 · 0 chars · 0 segments</dd>
+                    </div>
+                    <div>
+                        <dt>Credits per message</dt>
+                        <dd>1 credit(s) (Est.)</dd>
+                    </div>
+                    <div>
+                        <dt>Credits for Send</dt>
+                        <dd>0 credit(s) (Est.)</dd>
+                    </div>
+                    <div>
+                        <dt>Credits available</dt>
+                        <dd class="d-flex align-items-center justify-content-between">
+                            <span>150 credits</span>
+                            <button type="button" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size: 0.8rem;">Add More</button>
+                        </dd>
+                    </div>
+                </dl>
+                <div class="broadcast-action-buttons flex-wrap justify-content-between m-3">
+                    <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 ms-auto"><i class="bi bi-clock"></i> Refresh Estimate</button>
+                    <button class="btn btn-secondary d-flex align-items-center gap-2"><i class="bi bi-floppy"></i> Save Draft</button>
+                    <button id="sendNowBtn" class="btn btn-primary d-flex align-items-center gap-2"><i class="bi bi-send"></i> Send Now</button>
+                </div>
+                <div class="broadcast-review-note"><i class="bi bi-exclamation-circle"></i> Save-Draft keeps the message for review. Send-Now saves it first, then immediately queues eligible recipients through the same delivery pipeline.</div>
+            </aside>
+        </div>
+    </section>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
 <style>
 .form-control, .form-select, select.form-control, select.form-select {cursor:auto;}
+.broadcast-choice.active:before {content:"\F26B"; font-family:"bootstrap-icons"; font-weight:normal; font-style:normal; font-size:1.5rem; line-height:1; position:absolute; top:calc(50% - 0.75rem); right:0.75rem;}
+#sendNowBtn {padding:0.375rem 0.75rem!important; font-size:1rem!important; font-weight:normal!important;}
 .sms-broadcast-page {display:flex; flex-direction:column; gap:20px;}
 .sms-broadcast-page .page-heading {margin:0; padding:0;}
 .sms-broadcast-page .page-heading .section-eyebrow {margin:0 0 4px;}
@@ -182,416 +531,6 @@ justify-content:flex-end; margin-top:10px;}
 }
 </style>
 
-</head>
-<body>
-
-<div class="app-layout"><aside class="sidebar"><div class="sidebar-brand"><span class="brand-mark">CL</span><span><span class="brand-name">ConnectLocal</span><span class="brand-scope">Business Manager</span></span></div>
-<nav class="sidebar-nav">
-    <div class="nav-user-summary">
-        <span class="nav-user-label">Signed in as</span>
-        <span class="nav-user-email" title="mike@mikesauto.com">mike@mikesauto.com</span>
-    </div>
-    <div class="nav-section-label">Overview</div>
-    <a class="nav-item" href="dashboard.html" aria-current="page">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        Dashboard
-    </a>
-    <div class="nav-section-label">Business</div>
-    <a class="nav-item" href="businesses">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        My Business Locations
-    </a>
-    <!-- <a class="nav-item" href="business-connections">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg>
-        Connect Requests
-    </a> -->
-    <div class="nav-section-label">Offers & Promotions</div>
-    <a class="nav-item" href="offers">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-        Manage Offers
-    </a>
-    <a class="nav-item" href="loyalty/programs">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.2l-5.6 3 1.1-6.2L3 8.6l6.2-.9L12 2z"></path></svg>
-        LocalREWARDS
-    </a>
-    <a class="nav-item" href=""><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-        Keyword Campaigns
-    </a>
-    <!-- <a class="nav-item" href="bulk">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        Bulk
-    </a>
-    <a class="nav-item" href="reports">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-        Reports
-    </a> -->
-    <div class="nav-section-label">VIP Messaging</div>
-    <a class="nav-item" href="messages.html">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 9h8"></path><path d="M8 13h5"></path></svg>
-        Inbox
-    </a>
-    <a class="nav-item" href="sms/subscribers">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-        VIP Subscribers
-    </a>
-    <a class="nav-item active" href="broadcasts.html">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-7-8-3z"></path><path d="M11 14l4-4"></path></svg>
-        VIP Campaign
-    </a>
-    <a class="nav-item" href="">
-        <i class="bi bi-gear nav-icon text-center lh-1"></i>
-        Messages Settings
-    </a>
-    <div class="nav-section-label">Calendar</div>
-    <a class="nav-item" href="events">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        Events
-    </a>
-</nav>
-<div class="sidebar-footer"><div class="user-chip"><div class="user-avatar">M</div><div class="user-info"><span class="user-name">Mike Johnson</span><span class="user-role">BusinessAdmin</span></div></div></div></aside><div class="main"><header class="topbar"><div class="topbar-left"><h1 class="topbar-title" tabindex="-1">Business Manager</h1><span class="topbar-breadcrumb">Business workspace / Business Manager</span></div><div class="topbar-right"><label class="topbar-search" aria-label="Search business workspace"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg><input type="search" placeholder="Search..."></label><button class="icon-button" type="button" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span class="notification-dot"></span></button><span class="topbar-avatar" aria-hidden="true">M</span><button class="btn btn-sm btn-outline-danger btn-with-icon" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>Sign Out</button></div></header><div class="page-content">
-
-<div class="section-stack sms-broadcast-page">
-    <section class="page-heading">
-        <div>
-            <p class="section-eyebrow">Messaging</p>
-            <h1>VIP Message Composer</h1>
-        </div>
-    </section>
-    <section class="content-card broadcast-context-card">
-        <div class="broadcast-context-heading">
-            <div>
-                <h2>Broadcast context</h2>
-                <p>Select the business first. Audience, content, and delivery choices stay scoped to it.</p>
-            </div>
-            <span class="broadcast-readiness-badge is-attention">Setup required</span>
-        </div>
-        <div class="broadcast-context-grid">
-            <div class="broadcast-context-business">
-                <label class="form-label" for="sms-broadcast-business">Business</label>
-                <select id="sms-broadcast-business" class="form-select">
-                    <option value="019f40b6-3fb3-7e2d-a750-28a2f579f7a8">George Test Busines</option>
-                    <option value="019e82eb-6a3f-7fcd-8739-195c1926cf9e">Imtiaz mega Korangi</option>
-                    <option value="019b76dd-0100-7003-806f-010000000003">Mike's Auto Shop</option>
-                    <option value="019f47c3-7f39-73f7-adf5-1f3d933d9427">new Business</option>
-                    <option value="019e82e3-177b-7c3e-83a5-7d2b6c7ede81">Pizza Max</option>
-                </select>
-            </div>
-            <div class="broadcast-context-stat">
-                <span>SMS setup</span>
-                <strong>Not requested</strong>
-            </div>
-            <div class="broadcast-context-stat">
-                <span>Current audience</span>
-                <strong>Master List</strong>
-            </div>
-        </div>
-    </section>
-
-    <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary rounded-pill" data-bs-toggle="modal" data-bs-target="#smsHistoryModal">Message History <i class="bi bi-arrow-right"></i></button>
-    </div>
-
-    <section class="content-card broadcast-composer">
-        
-        <div class="broadcast-composer-heading">
-            <div>
-                <span class="broadcast-step-kicker">Guided composer</span>
-                <h2>Create a broadcast draft</h2>
-                <p>Choose the audience, write the message, then confirm delivery details before saving.</p>
-            </div>
-            <span class="broadcast-draft-badge">Draft only</span>
-        </div>
-        <div class="broadcast-workflow-grid">
-            <div class="broadcast-workflow-main">
-                <section class="broadcast-step-card" aria-labelledby="broadcast-audience-heading">
-                    <div class="broadcast-step-heading">
-                        <span class="broadcast-step-number">1</span>
-                        <div>
-                            <h3 id="broadcast-audience-heading">Audience</h3>
-                            <p>Choose who should receive this broadcast.</p>
-                        </div>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label" for="sms-audience">Audience source</label>
-                            <select id="sms-audience" class="form-select">
-                                <option value="MasterList">All opted-in VIP subscribers</option>
-                                <option value="Tags">Subscribers matching tags</option>
-                            </select>
-                        </div>
-                    </div>
-                    <details class="broadcast-disclosure">
-                        <summary>Advanced delivery channel</summary>
-                        
-                        <div class="broadcast-disclosure-body">
-                            <h6 class="fw-bold mb-3">Channel</h6>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="smsChannelMode" id="smsChannelModeAuto" value="Auto" checked>
-                                <label class="form-check-label" for="smsChannelModeAuto">Recommended: push with SMS fallback</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="smsChannelMode" id="smsChannelModeForceSms" value="ForceSms">
-                                <label class="form-check-label" for="smsChannelModeForceSms">Force SMS only</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="smsChannelMode" id="smsChannelModeBoth" value="Both">
-                                <label class="form-check-label" for="smsChannelModeBoth">Send through both channels</label>
-                            </div>
-                        </div>
-                    </details>
-                </section>
-                <section class="broadcast-step-card" aria-labelledby="broadcast-message-heading">
-                    <div class="broadcast-step-heading">
-                        <span class="broadcast-step-number">2</span>
-                        <div>
-                            <h3 id="broadcast-message-heading">Compose message</h3>
-                            <p>Write a concise message and preview its SMS size as you type.</p>
-                        </div>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-md-7">
-                            <div class="broadcast-message-label" style="margin-top:5px;">
-                                <label for="sms-headline" class="form-label">Headline</label>
-                                <span><span id="charCounter">160</span> characters</span>
-                            </div>
-                            <input id="sms-headline" class="form-control" name="_composer.Headline" type="text" maxlength="160" placeholder="Weekend Special" aria-describedby="charCounter" />
-                        </div>
-                        <div class="col-md-4 ms-auto">
-                            <label class="form-label" for="sms-headline-preset">Start from a preset</label>
-                            <div class="input-group">
-                                <select id="sms-headline-preset" class="form-select">
-                                    <option value="">Select a preset</option>
-                                    <option value="offer">Limited-time offer</option>
-                                    <option value="event">Event reminder</option>
-                                    <option value="hours">Hours update</option>
-                                    <option value="new">New arrival</option>
-                                </select>
-                                <button type="button" class="btn btn-outline-secondary" disabled="">Apply</button>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="broadcast-message-label">
-                                <label class="form-label" for="sms-body">Message</label>
-                                <span>0 characters · 0 segments</span>
-                            </div>
-                            <textarea id="sms-body" class="form-control broadcast-message-input" rows="7" placeholder="Tell your VIP subscribers what is available and what they should do next."></textarea>
-                        </div>
-                    </div>
-                    <div class="merge-field-area">
-                        <span>Insert message detail</span>
-                        <div class="merge-field-buttons" aria-label="Merge fields">
-                            <button type="button" class="btn btn-outline-secondary btn-sm">Offer</button>
-                            <button type="button" class="btn btn-outline-secondary btn-sm">Event</button>
-                        </div>
-                    </div>
-                    <details class="broadcast-disclosure">
-                        <summary>Optional campaign or image</summary>
-                        <div class="broadcast-disclosure-body">
-                            <div class="reference-panel__header">
-                                <div>
-                                    <h3>Optional content</h3>
-                                    <p>Attach a campaign or image when it adds value to the message.</p>
-                                </div>
-                            </div>
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <label class="form-label" for="sms-campaign-reference">Campaign</label>
-                                    <select id="sms-campaign-reference" class="form-select">
-                                        <option value="">No campaign</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label" for="sms-image">Image</label>
-                                    <select id="sms-image" class="form-select">
-                                        <option value="">No image</option>
-                                    </select>
-                                    <div class="media-picker-actions">
-                                        <input class="form-control" accept="image/*" type="file" _bl_f7b103cc-b6e4-4b1e-b910-630cf525cd93="">
-                                        <button type="button" class="btn btn-outline-secondary btn-sm" disabled="">Upload</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </details>
-                </section>
-                <section class="broadcast-step-card" aria-labelledby="broadcast-delivery-heading">
-                    <div class="broadcast-step-heading">
-                        <span class="broadcast-step-number">3</span>
-                        <div>
-                            <h3 id="broadcast-delivery-heading">Delivery</h3>
-                            <p>Keep the draft ready for manual queueing or attach a preferred schedule.</p>
-                        </div>
-                    </div>
-                    <div class="broadcast-choice-grid" role="group" aria-label="Delivery timing">
-                        <button type="button" class="broadcast-choice active" aria-pressed="">
-                            <strong>Queue after review</strong>
-                            <span>Save now, then queue manually from History.</span>
-                        </button>
-                        <button type="button" class="broadcast-choice">
-                            <strong>Schedule later</strong>
-                            <span>Store a preferred date and time with the draft.</span>
-                        </button>
-                    </div>
-                    <details class="broadcast-disclosure">
-                        <summary>Validate a test number</summary>
-                        <div class="broadcast-disclosure-body">
-                            <div class="test-send-panel">
-                                <div>
-                                    <label class="form-label" for="sms-test-phone">Test number</label>
-                                    <input id="sms-test-phone" placeholder="+15551234567" name="_testPhoneInput" class="form-control" _bl_51220308-7c35-4b3d-9672-7ca1f5af821a="">
-                                </div>
-                                <div class="test-send-panel__actions">
-                                    <button type="button" class="btn btn-outline-secondary">Check test</button>
-                                </div>
-                            </div>
-                        </div>
-                    </details>
-                </section>
-            </div>
-            <aside class="broadcast-review-card" aria-labelledby="broadcast-review-heading">
-                <div class="broadcast-review-header">
-                    <span class="broadcast-step-kicker">Live summary</span>
-                    <h3 id="broadcast-review-heading">Review your draft</h3>
-                </div>
-                <dl class="broadcast-review-list">
-                    <div>
-                        <dt>Business</dt>
-                        <dd>Mike's Auto Shop</dd>
-                    </div>
-                    <div>
-                        <dt>Audience</dt>
-                        <dd>All opted-in VIP subscribers</dd>
-                    </div>
-                    <div>
-                        <dt>Channel</dt>
-                        <dd>Push with SMS fallback</dd>
-                    </div>
-                    <div>
-                        <dt>Message size</dt>
-                        <dd>GSM-7 · 0 chars · 0 segments</dd>
-                    </div>
-                    <div>
-                        <dt>Delivery</dt>
-                        <dd>Manual queue after review</dd>
-                    </div>
-                </dl>
-                <div class="broadcast-action-buttons flex-wrap justify-content-between m-3">
-                    <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 ms-auto"><i class="bi bi-clock"></i> Refresh Estimate</button>
-                    <button class="btn btn-secondary d-flex align-items-center gap-2"><i class="bi bi-floppy"></i> Save Draft</button>
-                    <button class="btn btn-primary d-flex align-items-center gap-2" style="padding:0.375rem 0.75rem!important;font-size:1rem!important;font-weight:normal!important;"><i class="bi bi-send"></i> Send Now</button>
-                </div>
-                <div class="broadcast-review-note"><i class="bi bi-exclamation-circle"></i> Save-Draft keeps the message for review. Send-Now saves it first, then immediately queues eligible recipients through the same delivery pipeline.</div>
-            </aside>
-        </div>
-    </section>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-<!-- MODAL #smsHistoryModal -->
-<div class="modal fade" id="smsHistoryModal" tabindex="-1" aria-labelledby="smsHistoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div id="smsHistoryModalLabel" class="modal-title d-flex flex-wrap justify-content-between align-items-center w-100 me-2">
-                    <h2 class="w-100 fs-5 fw-bold mb-0">Broadcast History</h2>
-                    <p class="w-75 text-muted lh-sm mb-0" style="font-size:0.9rem;color:#666!important;">Provider accepted means the carrier or push provider accepted the send. Delivered, received, and opened are stronger confirmations.</p>
-                    <button class="btn btn-outline-secondary btn-sm" type="button">Refresh</button>
-                </div>
-                <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body table-responsive p-1">
-                <table class="table table-hover text-center align-middle">
-                    <thead>
-                        <tr>
-                            <th class="text-start w-50">Headline</th>
-                            <th>Status</th>
-                            <th>Scheduled</th>
-                            <th>Recipients</th>
-                            <th>Queued</th>
-                            <th>Provider accepted</th>
-                            <th>Delivered</th>
-                            <th>Received</th>
-                            <th>Opened</th>
-                            <th>Failed</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-start">
-                                <div class="fw-semibold">Kashif is Awesome!</div>
-                                <div class="text-muted small">38 chars · 1 segments</div>
-                            </td>
-                            <td>Completed</td>
-                            <td>-</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td class="text-end"><button type="button" class="btn btn-primary btn-sm" disabled="">Queue</button></td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                <div class="fw-semibold">Hours update</div>
-                                <div class="text-muted small">66 chars · 1 segments</div>
-                            </td>
-                            <td>Completed</td>
-                            <td>-</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td class="text-end"><button type="button" class="btn btn-primary btn-sm" disabled="">Queue</button></td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                <div class="fw-semibold">New for VIPs</div>
-                                <div class="text-muted small">67 chars · 1 segments</div>
-                            </td>
-                            <td>Draft</td>
-                            <td>-</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td class="text-end"><button type="button" class="btn btn-primary btn-sm">Queue</button></td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                <div class="fw-semibold">New for VIPs</div>
-                                <div class="text-muted small">67 chars · 1 segments</div>
-                            </td>
-                            <td>Draft</td>
-                            <td>-</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td class="text-end"><button type="button" class="btn btn-primary btn-sm">Queue</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="blazor-error-ui" class="d-none">An error has occurred.<a href="" class="reload">Reload</a><a class="dismiss">🗙</a></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -602,22 +541,59 @@ justify-content:flex-end; margin-top:10px;}
 <script src="https://business.localproject.net/js/dashboardCharts.js"></script>
 <script src="https://business.localproject.net/_framework/blazor.server.js"></script>
 
-<!--Compose Message Heading Character Count-->
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const inputField = document.getElementById('sms-headline');
-  const charCounter = document.getElementById('charCounter');
-  if (!inputField || !charCounter) return;
-  const updateCounter = () => {
-    const maxLength = parseInt(inputField.getAttribute('maxlength'), 10) || 160;
-
-    if (inputField.value.length > maxLength) {
-      inputField.value = inputField.value.slice(0, maxLength);
+// <!--"reveal-btn" check icon be shown/hidden on click-->
+document.querySelectorAll('.collapse').forEach(collapseEl => {
+    const triggerBtn = document.querySelector(`[data-bs-target="#${collapseEl.id}"]`);
+    if (triggerBtn) {
+        collapseEl.addEventListener('shown.bs.collapse', function () {
+            if (!triggerBtn.querySelector('.bi-check-lg')) {
+                const icon = document.createElement('i');
+                icon.className = 'bi bi-check-lg fs-6 lh-1';
+                triggerBtn.appendChild(icon);
+            }
+        });
+        collapseEl.addEventListener('hidden.bs.collapse', function () {
+            const icon = triggerBtn.querySelector('.bi-check-lg');
+            if (icon) {
+                icon.remove();
+            }
+        });
     }
-    const remaining = maxLength - inputField.value.length;
-    charCounter.textContent = Math.max(0, remaining);
-  };
-  inputField.addEventListener('input', updateCounter);
+});
+// <!--Compose Message Heading Character Count-->
+document.addEventListener('DOMContentLoaded', () => {
+    const inputField = document.getElementById('sms-headline');
+    const charCounter = document.getElementById('charCounter');
+    if (!inputField || !charCounter) return;
+    const updateCounter = () => {
+        const maxLength = parseInt(inputField.getAttribute('maxlength'), 10) || 160;
+        if (inputField.value.length > maxLength) {
+            inputField.value = inputField.value.slice(0, maxLength);
+        }
+        const remaining = maxLength - inputField.value.length;
+        charCounter.textContent = Math.max(0, remaining);
+    };
+    inputField.addEventListener('input', updateCounter);
+});
+// <!--"sendNowBtn" and "broadcast-choice" buttons function-->
+document.addEventListener('DOMContentLoaded', () => {
+    const choiceLater = document.getElementById('choiceLater');
+    const choiceNow = document.getElementById('choiceNow');
+    const sendNowBtn = document.getElementById('sendNowBtn');
+    function updateSelection(selectedBtn, unselectedBtn) {
+        selectedBtn.classList.add('active');
+        selectedBtn.setAttribute('aria-pressed', 'true');
+        unselectedBtn.classList.remove('active');
+        unselectedBtn.setAttribute('aria-pressed', 'false');
+        if (choiceLater.classList.contains('active')) {
+            sendNowBtn.innerHTML = '<i class="bi bi-calendar4-week"></i> Schedule';
+        } else {
+            sendNowBtn.innerHTML = '<i class="bi bi-send"></i> Send Now';
+        }
+    }
+    choiceLater.addEventListener('click', () => updateSelection(choiceLater, choiceNow));
+    choiceNow.addEventListener('click', () => updateSelection(choiceNow, choiceLater));
 });
 </script>
 
